@@ -74,7 +74,11 @@ function genesis_aff_box() {
 			// calculate image url
 			$imageurl = plugins_url(plugin_basename(dirname(__FILE__) . '/images/genesis_framework_logo.jpg'));
 			return '<div id="genesis-box"><h3>' . __('This website is powered by the Genesis Framework', 'wp-genesis-box') . '</h3><a href="' . $affurl . '"><img class="alignright" src="' . $imageurl . '" alt="Genesis Framework" title="Genesis Framework" width="180" height="150" /></a>' . __('Genesis empowers you to easily build amazing websites with WordPress. Whether you\'re a novice or advanced developer, Genesis provides the secure and search-engine-optimized foundation that takes WordPress to incredible places.', 'wp-genesis-box') . '<a href="' . $affurl . '">' . __('It\'s that simple - start using Genesis now!', 'wp-genesis-box') . '</a></div>';
+		} else { // no affiliate URL
+			return '<!-- WP Genesis Box: no affiliate URL specified. Go to plugin settings page and add your affiliate URL. -->';
 		}
+	} else { // plugin not enabled
+		return '<!-- WP Genesis Box: plugin not enabled. -->';
 	}
 }
 // show admin messages to plugin user
