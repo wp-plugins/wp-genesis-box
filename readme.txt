@@ -77,6 +77,7 @@ This will echo the Genesis box after the post content on each post.
 == Screenshots ==
 
 1. Here's what the output looks like.
+2. Settings page
 
 == Changelog ==
 

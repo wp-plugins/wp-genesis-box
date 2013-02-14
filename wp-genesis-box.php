@@ -44,9 +44,9 @@ function wp_genesis_box_page() {
       <?php $options = get_option('wp_genesis_box'); ?>
       <table class="form-table">
         <tr valign="top"><th scope="row"><?php _e('Plugin enabled?', 'wp_genesis_box'); ?></th>
-					<td><input type="checkbox" name="wp_genesis_box[enabled]" value="1" <?php checked('1', $options['enabled']); ?> /></td>
-				</tr>
-				<tr valign="top"><td colspan="2"><?php _e('Is plugin enabled? Uncheck this to turn it off temporarily.', 'wp_genesis_box'); ?></td></tr>
+		<td><input type="checkbox" name="wp_genesis_box[enabled]" value="1" <?php checked('1', $options['enabled']); ?> /></td>
+        </tr>
+	  <tr valign="top"><td colspan="2"><?php _e('Is plugin enabled? Uncheck this to turn it off temporarily.', 'wp_genesis_box'); ?></td></tr>
         <tr valign="top"><th scope="row"><?php _e('Your Affiliate URL', 'wp_genesis_box'); ?></th>
           <td><input type="text" name="wp_genesis_box[affurl]" value="<?php echo $options['affurl']; ?>" style="width:500px" /></td>
         </tr>
