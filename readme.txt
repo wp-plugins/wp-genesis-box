@@ -24,7 +24,7 @@ If you use and enjoy this plugin, please rate it and click the "Works" button be
 
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 
-3. Go to Settings &raquo; WP Genesis Box, enable the plugin and insert your affiliate link.
+3. Go to Settings &raquo; WP Genesis Box, configure the plugin
 
 4. Insert shortcode on posts or pages, or use PHP function.
 
@@ -45,6 +45,19 @@ You can also use the following function in your PHP code (functions.php, or a pl
 You can also use this:
 
 `do_shortcode('[wp-genesis-box]');`
+
+Here are the plugin defaults:
+
+- affurl => ''
+- rounded => 0 (false)
+- nofollow => 1 (true)
+- show => 0 (return)
+
+By default, rounded corner CSS is not applied, rel="nofollow" is applied to the affiliate link, and the output of the plugin is <em>returned</em> (not <em>echoed</em>).
+
+<strong>You must define the URL to be displayed</strong>. If you do not set the URL in the plugin's option page, or when you call the shortcode/function, nothing will happen and you will see this message in your website's source code:
+
+`WP Genesis Box: plugin not enabled. Check Settings page.`
 
 = Examples =
 
@@ -67,12 +80,24 @@ For Genesis framework users, use the <a href="http://my.studiopress.com/docs/hoo
 function include_genesis_box() {
   if (is_single()) {
     if (function_exists('genesis_aff_box') {
-      echo genesis_aff_box();
+      echo genesis_aff_box(); // or genesis_aff_box(array('show' => true));
     }
   }
 }`
 
 This will echo the Genesis box after the post content on each post.
+
+= I want to use the plugin in a widget. How? =
+
+You can either add this line of code to your functions.php:
+
+`add_filter('widget_text', 'do_shortcode');`
+
+Or install a plugin to do it for you: http://blogs.wcnickerson.ca/wordpress/plugins/widgetshortcodes/
+
+Now, add the built-in text widget that comes with WordPress, and insert the shortcode into the text widget. See above for how to use the shortcode.
+
+See http://digwp.com/2010/03/shortcodes-in-widgets/ for a detailed example.
 
 == Screenshots ==
 
@@ -81,10 +106,18 @@ This will echo the Genesis box after the post content on each post.
 
 == Changelog ==
 
+= 0.0.2 =
+* added more options to plugin Settings page
+* changed handling of default options
+
 = 0.0.1 =
 created
 
 == Upgrade Notice ==
+
+= 0.0.2 =
+* added more options to plugin Settings page
+* changed handling of default options
 
 = 0.0.1 =
 created

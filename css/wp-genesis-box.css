@@ -30,3 +30,9 @@
     float: right;
     margin: 0 0 25px 15px;
 }
+.rounded-corners {
+     -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+}
