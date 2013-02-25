@@ -99,12 +99,23 @@ Now, add the built-in text widget that comes with WordPress, and insert the shor
 
 See http://digwp.com/2010/03/shortcodes-in-widgets/ for a detailed example.
 
+= I don't want the buttons on my post editor toolbar. How do I remove them? =
+
+Add this to your functions.php:
+
+`remove_action('admin_print_footer_scripts', 'add_wpgb_quicktag');`
+
 == Screenshots ==
 
 1. Here's what the output looks like.
 2. Settings page
 
 == Changelog ==
+
+= 0.0.3 =
+* code refactoring
+* updated admin menu
+* added quicktag to post editor toolbar
 
 = 0.0.2 =
 * added more options to plugin Settings page
@@ -114,6 +125,11 @@ See http://digwp.com/2010/03/shortcodes-in-widgets/ for a detailed example.
 created
 
 == Upgrade Notice ==
+
+= 0.0.3 =
+* code refactoring
+* updated admin menu
+* added quicktag to post editor toolbar
 
 = 0.0.2 =
 * added more options to plugin Settings page
