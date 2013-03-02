@@ -16,6 +16,8 @@ Based on <a href="http://www.briangardner.com/genesis-box/">this blog post from 
 
 Genesis is a framework for WordPress for developing and maintaining modern and beautiful websites. Studiopress (the company that makes Genesis) affiliates can earn commission on every referral. This content box displays marketing text and logo that can help drive referrals through your website.
 
+Three different images may be chosen for inclusion in the content box.
+
 If you use and enjoy this plugin, please rate it and click the "Works" button below so others know that it works with the latest version of WordPress.
 
 == Installation ==
@@ -40,7 +42,7 @@ After going to Settings &raquo; WP Genesis Box and inserting your affiliate link
 
 You can also use the following function in your PHP code (functions.php, or a plugin):
 
-`genesis_aff_box();`
+`echo genesis_aff_box();`
 
 You can also use this:
 
@@ -51,11 +53,12 @@ Here are the plugin defaults:
 - affurl => ''
 - rounded => 0 (false)
 - nofollow => 1 (true)
+- image => 1 (genesis_framework_logo1.png)
 - show => 0 (return)
 
 By default, rounded corner CSS is not applied, rel="nofollow" is applied to the affiliate link, and the output of the plugin is <em>returned</em> (not <em>echoed</em>).
 
-<strong>You must define the URL to be displayed</strong>. If you do not set the URL in the plugin's option page, or when you call the shortcode/function, nothing will happen and you will see this message in your website's source code:
+<strong>You must define the URL to be displayed</strong>. If you do not set the URL in the plugin's settings page, or when you call the shortcode/function, nothing will happen and you will see this message in your website's source code:
 
 `WP Genesis Box: plugin not enabled. Check Settings page.`
 
@@ -85,7 +88,7 @@ function include_genesis_box() {
   }
 }`
 
-This will echo the Genesis box after the post content on each post.
+This will echo the Genesis box after the post content on each post. Or you can simply check the "Auto insert Genesis box" checkbox on the plugin settings page.
 
 = I want to use the plugin in a widget. How? =
 
@@ -105,12 +108,27 @@ Add this to your functions.php:
 
 `remove_action('admin_print_footer_scripts', 'add_wpgb_quicktag');`
 
+= I inserted the shortcode but don't see anything on the page. =
+
+Clear your browser cache and also clear your cache plugin (if any). If you still don't see anything, check your webpage source for the following:
+
+`<!-- WP Genesis Box: plugin is disabled. Check Settings page. -->`
+
+This means you didn't pass a necessary setting to the plugin, so it disabled itself. You need to pass at least the affiliate URL, either by entering it on the settings page or passing it to the plugin in the shortcode or PHP function. You should also check that the "enabled" checkbox on the plugin settings page is checked.
+
 == Screenshots ==
 
 1. Here's what the output looks like.
-2. Settings page
+2. Top half of settings page
+3. Images to choose from on settings page
 
 == Changelog ==
+
+= 0.0.4 =
+- updated admin messages code
+- added more images to choose from
+- updated readme
+- added option to auto-insert Genesis box at end of single posts
 
 = 0.0.3 =
 * code refactoring
@@ -125,6 +143,12 @@ Add this to your functions.php:
 created
 
 == Upgrade Notice ==
+
+= 0.0.4 =
+- updated admin messages code
+- added more images to choose from
+- updated readme
+- added option to auto-insert Genesis box at end of single posts
 
 = 0.0.3 =
 * code refactoring
