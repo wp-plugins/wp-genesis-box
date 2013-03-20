@@ -1,5 +1,5 @@
 === WP Genesis Box ===
-Tags: genesis, affiliate, marketing, commission, content box
+Tags: genesis, affiliate, marketing, commission, content box, rounded, image
 Requires at least: 3.5
 Tested up to: 3.5.1
 Contributors: jp2112
@@ -16,21 +16,42 @@ Based on <a href="http://www.briangardner.com/genesis-box/">this blog post from 
 
 Genesis is a framework for WordPress for developing and maintaining modern and beautiful websites. Studiopress (the company that makes Genesis) affiliates can earn commission on every referral. This content box displays marketing text and logo that can help drive referrals through your website.
 
-Three different images may be chosen for inclusion in the content box.
+= Features =
 
-If you use and enjoy this plugin, please rate it and click the "Works" button below so others know that it works with the latest version of WordPress.
+- Display your affiliate link anywhere
+- Works with most browsers, but degrades nicely in older browsers
+- CSS only loads on pages with shortcode or function call
+- Multiple images available for inclusion
+- Links can be opened in new window
+- Includes standard marketing language from Studiopress, or use your own
+- Automatically insert the Genesis box after each post
+
+<strong>If you use and enjoy this plugin, please rate it and click the "Works" button below so others know that it works with the latest version of WordPress.</strong>
 
 == Installation ==
 
 1. Upload the plugin through the WordPress interface.
-
 2. Activate the plugin through the 'Plugins' menu in WordPress.
-
 3. Go to Settings &raquo; WP Genesis Box, configure the plugin
-
 4. Insert shortcode on posts or pages, or use PHP function.
 
+To remove this plugin, go to the 'Plugins' menu in WordPress, find the plugin in the listing and click "Deactivate". After the page refreshes, find the plugin again in the listing and click "Delete".
+
 == Frequently Asked Questions ==
+
+= What are the plugin defaults? =
+
+By default, following values are passed to the plugin:
+
+- affurl => ''
+- rounded => false
+- nofollow => true
+- image => 'genesis_framework_logo1'
+- opennewwindow => false
+
+By default, values are returned, not echoed. You need to explicitly request that the plugin output be echoed by passing `'show' => true` in the array when calling the plugin via function.
+
+To change defaults on a site-wide basis, go to the Settings page. To change defaults on a per-shortcode basis, pass new values to each shortcode or function call. Priority is given to parameters passed via shortcode or function.
 
 = How do I use the plugin? =
 
@@ -48,19 +69,20 @@ You can also use this:
 
 `do_shortcode('[wp-genesis-box]');`
 
-Here are the plugin defaults:
+<strong>You must define the URL to be displayed</strong>. If you do not set the URL in the plugin's settings page, or when you call the shortcode/function, the plugin won't do anything.</strong> 
+You may also use shortcodes within the shortcode, ex:
 
-- affurl => ''
-- rounded => 0 (false)
-- nofollow => 1 (true)
-- image => 1 (genesis_framework_logo1.png)
-- show => 0 (return)
+`[wp-genesis-box][my_shortcode][/wp-genesis-box]`
 
-By default, rounded corner CSS is not applied, rel="nofollow" is applied to the affiliate link, and the output of the plugin is <em>returned</em> (not <em>echoed</em>).
+And you can specify your own text to be displayed, if you do not want the default text, ex:
 
-<strong>You must define the URL to be displayed</strong>. If you do not set the URL in the plugin's settings page, or when you call the shortcode/function, nothing will happen and you will see this message in your website's source code:
+`[wp-genesis-box image="genesis_framework_logo10"]Click here to purchase the Genesis framework[/wp-genesis-box]`
 
-`WP Genesis Box: plugin not enabled. Check Settings page.`
+or
+
+`if (function_exists('genesis_aff_box') {
+  genesis_aff_box(array('show' => true, 'image' => 'genesis_framework_logo10'), 'Click here to buy the Genesis Framework');
+}`
 
 = Examples =
 
@@ -71,11 +93,13 @@ function include_genesis_box($content) {
   if (is_single()) { // it's a single post
     // append Genesis box after content
     if (function_exists('genesis_aff_box') {
-      $content .= genesis_aff_box();
+      $content .= genesis_aff_box(); // assume affiliate URL is on plugin settings page
     }
   }
   return $content;
 }`
+
+Always wrap plugin function calls with a `function_exists` check so that your site doesn't go down if the plugin isn't active.
 
 For Genesis framework users, use the <a href="http://my.studiopress.com/docs/hook-reference/">genesis_after_post_content</a> hook:
 
@@ -83,16 +107,16 @@ For Genesis framework users, use the <a href="http://my.studiopress.com/docs/hoo
 function include_genesis_box() {
   if (is_single()) {
     if (function_exists('genesis_aff_box') {
-      echo genesis_aff_box(); // or genesis_aff_box(array('show' => true));
+      echo genesis_aff_box(); // or: genesis_aff_box(array('show' => true), 'Click here to buy the Genesis Framework');
     }
   }
 }`
 
-This will echo the Genesis box after the post content on each post. Or you can simply check the "Auto insert Genesis box" checkbox on the plugin settings page.
+This will echo the Genesis box after the post content on each post. Or you can simply check the "Auto insert Genesis box" checkbox on the plugin settings page and not have to use the shortcode or call the function.
 
 = I want to use the plugin in a widget. How? =
 
-You can either add this line of code to your functions.php:
+Add this line of code to your functions.php:
 
 `add_filter('widget_text', 'do_shortcode');`
 
@@ -101,6 +125,8 @@ Or install a plugin to do it for you: http://blogs.wcnickerson.ca/wordpress/plug
 Now, add the built-in text widget that comes with WordPress, and insert the shortcode into the text widget. See above for how to use the shortcode.
 
 See http://digwp.com/2010/03/shortcodes-in-widgets/ for a detailed example.
+
+<strong>Important: If using a widget in the sidebar, make sure you choose one of the smaller images so that it will fit.</strong>
 
 = I don't want the buttons on my post editor toolbar. How do I remove them? =
 
@@ -114,15 +140,29 @@ Clear your browser cache and also clear your cache plugin (if any). If you still
 
 `<!-- WP Genesis Box: plugin is disabled. Check Settings page. -->`
 
-This means you didn't pass a necessary setting to the plugin, so it disabled itself. You need to pass at least the affiliate URL, either by entering it on the settings page or passing it to the plugin in the shortcode or PHP function. You should also check that the "enabled" checkbox on the plugin settings page is checked.
+This means you didn't pass a necessary setting to the plugin, so it disabled itself. You need to pass at least the affiliate URL, either by entering it on the settings page or passing it to the plugin in the shortcode or PHP function. You should also check that the "enabled" checkbox on the plugin settings page is checked. If that box is unchecked, the plugin will be disabled even if you pass the affiliate URL.
+
+= I cleared my browser cache and my caching plugin but the output still looks wrong. =
+
+Are you using a plugin that minifies CSS? If so, try excluding the plugin CSS file from minification.
 
 == Screenshots ==
 
 1. Here's what the output looks like.
-2. Top half of settings page
-3. Images to choose from on settings page
+2. Settings page
 
 == Changelog ==
+
+= 0.0.5 =
+- there are now 19 different images available
+- minor code refactoring
+- added marketing text from Studiopress shareasale.com settings, which can be overridden by passing $content to shortcode or function
+- image picker is a dropdown box with dynamic image display (thanks to http://stackoverflow.com/questions/2921607/how-to-change-picture-using-drop-down-list)
+- moved quicktag script further down the page
+- minor admin page update
+- updated readme.txt
+- added option to open links in new window
+- css file refactoring
 
 = 0.0.4 =
 - updated admin messages code
@@ -143,6 +183,17 @@ This means you didn't pass a necessary setting to the plugin, so it disabled its
 created
 
 == Upgrade Notice ==
+
+= 0.0.5 =
+- there are now 19 different images available
+- minor code refactoring
+- added marketing text from Studiopress shareasale.com settings, which can be overridden by passing $content to shortcode or function
+- image picker is a dropdown box with dynamic image display (thanks to http://stackoverflow.com/questions/2921607/how-to-change-picture-using-drop-down-list)
+- moved quicktag script further down the page
+- minor admin page update
+- updated readme.txt
+- added option to open links in new window
+- css file refactoring
 
 = 0.0.4 =
 - updated admin messages code
