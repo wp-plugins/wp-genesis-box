@@ -1,9 +1,9 @@
 === WP Genesis Box ===
-Tags: genesis, affiliate, marketing, commission, content box, rounded, image
+Tags: genesis, affiliate, marketing, commission, box, rounded, image
 Requires at least: 3.5
 Tested up to: 3.5.1
 Contributors: jp2112
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NRHAAC7Q9Q2X6
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7EX9NB9TLFHVW
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -52,6 +52,8 @@ By default, following values are passed to the plugin:
 By default, values are returned, not echoed. You need to explicitly request that the plugin output be echoed by passing `'show' => true` in the array when calling the plugin via function.
 
 To change defaults on a site-wide basis, go to the Settings page. To change defaults on a per-shortcode basis, pass new values to each shortcode or function call. Priority is given to parameters passed via shortcode or function.
+
+The plugin arguments and default values may change over time. To get the latest list of arguments and defaults, look at the settings page.
 
 = How do I use the plugin? =
 
@@ -146,12 +148,45 @@ This means you didn't pass a necessary setting to the plugin, so it disabled its
 
 Are you using a plugin that minifies CSS? If so, try excluding the plugin CSS file from minification.
 
+= I don't want the admin CSS. How do I remove it? =
+
+Add this to your functions.php:
+
+`remove_action('admin_head', 'insert_wpgb_admin_css');`
+
+= I don't want the plugin CSS. How do I remove it? =
+
+Add this to your functions.php:
+
+`remove_action('wp_head', 'wp_genesis_box_styles');`
+
+= I want to use my own text instead of the text output by the plugin. =
+
+If you are using the shortcode, do this:
+
+`[wp-genesis-box]Your content here[/wp-genesis-box]`
+
+The text output by the plugin will be overriden by whatever you type inbetween the shortcode tags.
+
+If you are using the PHP function, do this:
+
+`genesis_aff_box(array('show' => true), 'Click <a href="my link">here</a> to buy the Genesis Framework');`
+
+The second argument of the function is the content you want to use. You can use HTML tags and shortcodes in this string.
+
 == Screenshots ==
 
 1. Here's what the output looks like.
 2. Settings page
 
 == Changelog ==
+
+= 0.0.6 =
+- added donate link on admin page
+- admin page CSS added
+- various admin page tweaks
+- minor code refactoring
+- added shortcode defaults display on settings page
 
 = 0.0.5 =
 - there are now 19 different images available
@@ -183,6 +218,13 @@ Are you using a plugin that minifies CSS? If so, try excluding the plugin CSS fi
 created
 
 == Upgrade Notice ==
+
+= 0.0.6 =
+- added donate link on admin page
+- admin page CSS added
+- various admin page tweaks
+- minor code refactoring
+- added shortcode defaults display on settings page
 
 = 0.0.5 =
 - there are now 19 different images available

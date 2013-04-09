@@ -3,13 +3,13 @@
 Plugin Name: WP Genesis Box
 Plugin URI: http://www.jimmyscode.com/wordpress/wp-genesis-box/
 Description: Display the Genesis framework affiliate box on your WordPress website. Make money as a Studiopress affiliate.
-Version: 0.0.5
+Version: 0.0.6
 Author: Jimmy Pe&ntilde;a
 Author URI: http://www.jimmyscode.com/
 License: GPLv2 or later
 */
 // plugin constants
-define('WPGB_VERSION', '0.0.5');
+define('WPGB_VERSION', '0.0.6');
 define('WPGB_PLUGIN_NAME', 'WP Genesis Box');
 define('WPGB_SLUG', 'wp-genesis-box');
 define('WPGB_OPTION', 'wp_genesis_box');
@@ -44,7 +44,6 @@ QTags.addButton('wpgb', 'Genesis Box', '[wp-genesis-box]', '', '', 'add WP Genes
 <?php }
 
 // localization to allow for translations
-// also, register CSS style for later inclusion
 add_action('init', 'wp_genesis_box_translation_file');
 function wp_genesis_box_translation_file() {
   $plugin_path = plugin_basename(dirname(__FILE__)) . '/translations';
@@ -54,7 +53,19 @@ function wp_genesis_box_translation_file() {
 // tell WP that we are going to use new options
 add_action('admin_init', 'wp_genesis_box_options_init');
 function wp_genesis_box_options_init() {
-  register_setting('wp_genesis_box_options', WPGB_OPTION);
+  register_setting('wp_genesis_box_options', WPGB_OPTION, 'wpgb_validation');
+  register_wpgb_admin_style();
+}
+// validation function
+function wpgb_validation($input) {
+  // sanitize url
+  $input[WPGB_DEFAULT_URL_NAME] = esc_url($input[WPGB_DEFAULT_URL_NAME]);
+  // sanitize image
+  $input[WPGB_DEFAULT_IMAGE_NAME] = sanitize_text_field($input[WPGB_DEFAULT_IMAGE_NAME]);
+  if (!$input[WPGB_DEFAULT_IMAGE_NAME]) { // set to default
+    $input[WPGB_DEFAULT_IMAGE_NAME] = WPGB_DEFAULT_IMAGE;
+  }
+  return $input;
 }
 // add Settings sub-menu
 add_action('admin_menu', 'wpgb_plugin_menu');
@@ -73,36 +84,36 @@ function wp_genesis_box_page() {
     <?php screen_icon(); ?>
     <h2><?php echo WPGB_PLUGIN_NAME; ?></h2>
     <form method="post" action="options.php">
+      <?php submit_button(); ?>
       <?php settings_fields('wp_genesis_box_options'); ?>
       <?php $options = wpgb_getpluginoptions(); ?>
 	<?php /* update_option(WPGB_OPTION, $options); */ ?>
-      <table class="form-table">
-        <tr valign="top"><th scope="row"><strong><label for="wp_genesis_box[<?php echo WPGB_DEFAULT_ENABLED_NAME; ?>]"><?php _e('Plugin enabled?', WPGB_LOCAL); ?></label></strong></th>
+      <table class="form-table" id="theme-options-wrap">
+        <tr valign="top"><th scope="row"><strong><label title="<?php _e('Is plugin enabled? Uncheck this to turn it off temporarily.', WPGB_LOCAL); ?>" for="wp_genesis_box[<?php echo WPGB_DEFAULT_ENABLED_NAME; ?>]"><?php _e('Plugin enabled?', WPGB_LOCAL); ?></label></strong></th>
 		<td><input type="checkbox" id="wp_genesis_box[<?php echo WPGB_DEFAULT_ENABLED_NAME; ?>]" name="wp_genesis_box[<?php echo WPGB_DEFAULT_ENABLED_NAME; ?>]" value="1" <?php checked('1', $options[WPGB_DEFAULT_ENABLED_NAME]); ?> /></td>
         </tr>
 	  <tr valign="top"><td colspan="2"><?php _e('Is plugin enabled? Uncheck this to turn it off temporarily.', WPGB_LOCAL); ?></td></tr>
-        <tr valign="top"><th scope="row"><strong><label for="wp_genesis_box[<?php echo WPGB_DEFAULT_URL_NAME; ?>]"><?php _e('Your Affiliate URL', WPGB_LOCAL); ?></label></strong></th>
-          <td><input type="text" id="wp_genesis_box[<?php echo WPGB_DEFAULT_URL_NAME; ?>]" name="wp_genesis_box[<?php echo WPGB_DEFAULT_URL_NAME; ?>]" value="<?php echo $options[WPGB_DEFAULT_URL_NAME]; ?>" style="width:500px" /></td>
+        <tr valign="top"><th scope="row"><strong><label title="<?php _e('Enter your affiliate URL here. This will be inserted wherever you use the shortcode.', WPGB_LOCAL); ?>" for="wp_genesis_box[<?php echo WPGB_DEFAULT_URL_NAME; ?>]"><?php _e('Your Affiliate URL', WPGB_LOCAL); ?></label></strong></th>
+          <td><input type="url" id="wp_genesis_box[<?php echo WPGB_DEFAULT_URL_NAME; ?>]" name="wp_genesis_box[<?php echo WPGB_DEFAULT_URL_NAME; ?>]" value="<?php echo $options[WPGB_DEFAULT_URL_NAME]; ?>" /></td>
         </tr>
         <tr valign="top"><td colspan="2"><?php _e('Enter your affiliate URL here. This will be inserted wherever you use the shortcode.', WPGB_LOCAL); ?></td></tr>
-        <tr valign="top"><th scope="row"><strong><label for="wp_genesis_box[<?php echo WPGB_DEFAULT_ROUNDED_NAME; ?>]"><?php _e('Rounded corners CSS?', WPGB_LOCAL); ?></label></strong></th>
+        <tr valign="top"><th scope="row"><strong><label title="<?php _e('Do you want to apply rounded corners CSS to the output?', WPGB_LOCAL); ?>" for="wp_genesis_box[<?php echo WPGB_DEFAULT_ROUNDED_NAME; ?>]"><?php _e('Rounded corners CSS?', WPGB_LOCAL); ?></label></strong></th>
 		<td><input type="checkbox" id="wp_genesis_box[<?php echo WPGB_DEFAULT_ROUNDED_NAME; ?>]" name="wp_genesis_box[<?php echo WPGB_DEFAULT_ROUNDED_NAME; ?>]" value="1" <?php checked('1', $options[WPGB_DEFAULT_ROUNDED_NAME]); ?> /></td>
         </tr>
 	  <tr valign="top"><td colspan="2"><?php _e('Do you want to apply rounded corners CSS to the output?', WPGB_LOCAL); ?></td></tr>
-        <tr valign="top"><th scope="row"><strong><label for="wp_genesis_box[<?php echo WPGB_DEFAULT_AUTO_INSERT_NAME; ?>]"><?php _e('Auto insert Genesis box at the end of posts?', WPGB_LOCAL); ?></label></strong></th>
+        <tr valign="top"><th scope="row"><strong><label title="<?php _e('Check this box to automatically insert the output at the end of blog posts. If you do not do this then you will need to manually insert shortcode or call the function in PHP.', WPGB_LOCAL); ?>" for="wp_genesis_box[<?php echo WPGB_DEFAULT_AUTO_INSERT_NAME; ?>]"><?php _e('Auto insert Genesis box at the end of posts?', WPGB_LOCAL); ?></label></strong></th>
 		<td><input type="checkbox" id="wp_genesis_box[<?php echo WPGB_DEFAULT_AUTO_INSERT_NAME; ?>]" name="wp_genesis_box[<?php echo WPGB_DEFAULT_AUTO_INSERT_NAME; ?>]" value="1" <?php checked('1', $options[WPGB_DEFAULT_AUTO_INSERT_NAME]); ?> /></td>
         </tr>
 	  <tr valign="top"><td colspan="2"><?php _e('Check this box to automatically insert the output at the end of blog posts. If you don\'t do this then you will need to manually insert shortcode or call the function in PHP.', WPGB_LOCAL); ?></td></tr>
-        <tr valign="top"><th scope="row"><strong><label for="wp_genesis_box[<?php echo WPGB_DEFAULT_NOFOLLOW_NAME; ?>]"><?php _e('Nofollow links?', WPGB_LOCAL); ?></label></strong></th>
+        <tr valign="top"><th scope="row"><strong><label title="<?php _e('Do you want to add rel=nofollow to all links?', WPGB_LOCAL); ?>" for="wp_genesis_box[<?php echo WPGB_DEFAULT_NOFOLLOW_NAME; ?>]"><?php _e('Nofollow links?', WPGB_LOCAL); ?></label></strong></th>
 		<td><input type="checkbox" id="wp_genesis_box[<?php echo WPGB_DEFAULT_NOFOLLOW_NAME; ?>]" name="wp_genesis_box[<?php echo WPGB_DEFAULT_NOFOLLOW_NAME; ?>]" value="1" <?php checked('1', $options[WPGB_DEFAULT_NOFOLLOW_NAME]); ?> /></td>
         </tr>
 	  <tr valign="top"><td colspan="2"><?php _e('Do you want to add rel="nofollow" to all links?', WPGB_LOCAL); ?></td></tr>
-
-        <tr valign="top"><th scope="row"><strong><label for="wp_genesis_box[<?php echo WPGB_DEFAULT_NEWWINDOW_NAME; ?>]"><?php _e('Open links in new window?', WPGB_LOCAL); ?></label></strong></th>
+        <tr valign="top"><th scope="row"><strong><label title="<?php _e('Check this box to open links in a new window. target=_blank will be added to all links', WPGB_LOCAL); ?>" for="wp_genesis_box[<?php echo WPGB_DEFAULT_NEWWINDOW_NAME; ?>]"><?php _e('Open links in new window?', WPGB_LOCAL); ?></label></strong></th>
 		<td><input type="checkbox" id="wp_genesis_box[<?php echo WPGB_DEFAULT_NEWWINDOW_NAME; ?>]" name="wp_genesis_box[<?php echo WPGB_DEFAULT_NEWWINDOW_NAME; ?>]" value="1" <?php checked('1', $options[WPGB_DEFAULT_NEWWINDOW_NAME]); ?> /></td>
         </tr>
-	  <tr valign="top"><td colspan="2"><?php _e('Do you want to open links in a new window?', WPGB_LOCAL); ?></td></tr>
-        <tr valign="top"><th scope="row"><strong><label for="wp_genesis_box[<?php echo WPGB_DEFAULT_IMAGE_NAME; ?>]"><?php _e('Default image', WPGB_LOCAL); ?></label></strong></th>
+	  <tr valign="top"><td colspan="2"><?php _e('Check this box to open links in a new window. target="_blank" will be added to all links', WPGB_LOCAL); ?></td></tr>
+        <tr valign="top"><th scope="row"><strong><label title="<?php _e('Select the default image.', WPGB_LOCAL); ?>" for="wp_genesis_box[<?php echo WPGB_DEFAULT_IMAGE_NAME; ?>]"><?php _e('Default image', WPGB_LOCAL); ?></label></strong></th>
 		<td><select id="wp_genesis_box[<?php echo WPGB_DEFAULT_IMAGE_NAME; ?>]" name="wp_genesis_box[<?php echo WPGB_DEFAULT_IMAGE_NAME; ?>]" onChange="picture.src=this.options[this.selectedIndex].getAttribute('data-whichPicture');">
                 <?php $images = explode(",", WPGB_AVAILABLE_IMAGES);
                       for($i=0, $imagecount=count($images); $i < $imagecount; $i++) {
@@ -114,13 +125,40 @@ function wp_genesis_box_page() {
         <tr><td colspan="2"><img src="<?php if (!$selectedimage) { echo plugins_url(plugin_basename(dirname(__FILE__) . '/images/' . WPGB_DEFAULT_IMAGE . '.png')); } else { echo $selectedimage; } ?>" id="picture" /></td></tr>
 	  <tr valign="top"><td colspan="2"><?php _e('Select the default image.', WPGB_LOCAL); ?></td></tr>
       </table>
-      <p class="submit">
-      <input type="submit" class="button-primary" value="<?php _e('Save Changes', WPGB_LOCAL); ?>" />
-      </p> 
+      <?php submit_button(); ?>
     </form>
-    <h2>Support</h2>
-	<div style="background:#eff;border:1px solid gray;padding:20px">
-      If you like this plugin, please <a href="http://wordpress.org/extend/plugins/<?php echo WPGB_SLUG; ?>/">rate it on WordPress.org</a> and click the "Works" button so others know it will work for your WordPress version. For support please visit the <a href="http://wordpress.org/support/plugin/<?php echo WPGB_SLUG; ?>">forums</a>.
+    <h3>Plugin Arguments and Defaults</h3>
+    <table class="widefat">
+      <thead>
+        <tr>
+          <th>Argument</th>
+	    <th>Type</th>
+          <th>Default Value</th>
+        </tr>
+      </thead>
+      <tbody>
+    <?php $plugin_defaults = wpgb_shortcode_defaults(); foreach($plugin_defaults as $key => $value) { ?>
+        <tr>
+          <td><?php echo $key; ?></td>
+	    <td><?php echo gettype($value); ?></td>
+          <td> <?php 
+						if ($value === true) {
+							echo 'true';
+						} elseif ($value === false) {
+							echo 'false';
+						} elseif ($value === '') {
+							echo '<em>(this value is blank by default)</em>';
+						} else {
+							echo $value;
+						} ?></td>
+        </tr>
+    <?php } ?>
+    </tbody>
+    </table>
+    <?php screen_icon('edit-comments'); ?>
+    <h3>Support</h3>
+	<div class="support">
+      If you like this plugin, please <a href="http://wordpress.org/support/view/plugin-reviews/<?php echo WPGB_SLUG; ?>/">rate it on WordPress.org</a> and click the "Works" button so others know it will work for your WordPress version. For support please visit the <a href="http://wordpress.org/support/plugin/<?php echo WPGB_SLUG; ?>">forums</a>. <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7EX9NB9TLFHVW"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate with PayPal" title="Donate with PayPal" width="92" height="26" /></a>
     </div>
   </div>
   <?php 
@@ -130,23 +168,45 @@ add_shortcode('wp-genesis-box', 'genesis_aff_box');
 // one function for shortcode and PHP
 function genesis_aff_box($atts, $content = null) {
   // get parameters
-  extract( shortcode_atts( array(
-    WPGB_DEFAULT_URL_NAME => WPGB_DEFAULT_URL, 
-    WPGB_DEFAULT_ROUNDED_NAME => WPGB_ROUNDED, 
-    WPGB_DEFAULT_NOFOLLOW_NAME => WPGB_NOFOLLOW, 
-    WPGB_DEFAULT_IMAGE_NAME => WPGB_DEFAULT_IMAGE, 
-    WPGB_DEFAULT_NEWWINDOW_NAME => WPGB_DEFAULT_NEWWINDOW, 
-    WPGB_DEFAULT_SHOW_NAME => WPGB_DEFAULT_SHOW
-    ), $atts ) );
-
+  extract(shortcode_atts(wpgb_shortcode_defaults(), $atts));
+  // plugin is enabled/disabled from settings page only
   $options = wpgb_getpluginoptions();
   $enabled = $options[WPGB_DEFAULT_ENABLED_NAME];
 
-  if ($enabled) { // plugin is enabled
+  // ******************************
+  // derive shortcode values from constants
+  // ******************************
+  $temp_url = constant('WPGB_DEFAULT_URL_NAME');
+  $affiliate_url = $$temp_url;
+  $temp_nofollow = constant('WPGB_DEFAULT_NOFOLLOW_NAME');
+  $nofollow = $$temp_nofollow;
+  $temp_window = constant('WPGB_DEFAULT_NEWWINDOW_NAME');
+  $opennewwindow = $$temp_window;
+  $temp_show = constant('WPGB_DEFAULT_SHOW_NAME');
+  $show = $$temp_show;
+  $temp_rounded = constant('WPGB_DEFAULT_ROUNDED_NAME');
+  $rounded = $$temp_rounded;
+  $temp_image = constant('WPGB_DEFAULT_IMAGE_NAME');
+  $img = $$temp_image;
+
+  // ******************************
+  // sanitize user input
+  // ******************************
+  $affiliate_url = esc_url($affiliate_url);
+  $rounded = (bool)$rounded;
+  $nofollow = (bool)$nofollow;
+  $opennewwindow = (bool)$opennewwindow;
+  $show = (bool)$show;
+  $img = sanitize_text_field($img);
+
+  // ******************************
+  // check for parameters, then settings, then defaults
+  // ******************************
+  if ($enabled) {
     // check for overridden parameters, if nonexistent then get from DB
-    if ($affurl === WPGB_DEFAULT_URL) { // no url passed to function, try settings page
-      $affurl = $options[WPGB_DEFAULT_URL_NAME];
-      if (($affurl === WPGB_DEFAULT_URL) || ($affurl === false)) { // no url on settings page either
+    if ($affiliate_url === WPGB_DEFAULT_URL) { // no url passed to function, try settings page
+      $affiliate_url = $options[WPGB_DEFAULT_URL_NAME];
+      if (($affiliate_url === WPGB_DEFAULT_URL) || ($affiliate_url === false)) { // no url on settings page either
         $enabled = false;
       }
     }
@@ -162,10 +222,10 @@ function genesis_aff_box($atts, $content = null) {
 	  $nofollow = WPGB_NOFOLLOW;
 	}
     }
-    if ($image == WPGB_DEFAULT_IMAGE) {
-      $image = $options[WPGB_DEFAULT_IMAGE_NAME];
-      if ($image === false) {
-        $image = WPGB_DEFAULT_IMAGE;
+    if ($img == WPGB_DEFAULT_IMAGE) {
+      $img = $options[WPGB_DEFAULT_IMAGE_NAME];
+      if ($img === false) {
+        $img = WPGB_DEFAULT_IMAGE;
       }
     }
     if ($opennewwindow == WPGB_DEFAULT_NEWWINDOW) {
@@ -174,46 +234,50 @@ function genesis_aff_box($atts, $content = null) {
         $opennewwindow = WPGB_DEFAULT_NEWWINDOW;
       }
     }
-  }
+  } // end enabled check
+
+  // ******************************
+  // do some actual work
+  // ******************************
   if ($enabled) {
     // enqueue CSS only on pages with shortcode
-    wp_genesis_box_styles();
+    add_action('wp_head', 'wp_genesis_box_styles'); // or wp_enqueue_styles ?
 
     if ($content) {
-      $text = $content;
+      $text = wp_kses_post(force_balance_tags($content));
     } else {
-      $text = '<p>Genesis empowers you to quickly and easily build incredible websites with WordPress. ';
-      $text .= 'Whether you\'re a novice or advanced developer, Genesis provides the secure and search-engine-optimized ';
-      $text .= 'foundation that takes WordPress to places you never thought it could go. It\'s that simple - ';
-      $text .= '<a' . ($opennewwindow ? ' target="_blank" ' : ' ') . ($nofollow ? ' rel="nofollow" ' : ' ') . 'href="' . $affurl . '">start using Genesis now!</a></p>';
-      $text .= '<p>Take advantage of the 6 default layout options, comprehensive SEO settings, rock-solid security, flexible ';
-      $text .= 'theme options, cool custom widgets, custom design hooks, and a huge selection of child themes ("skins") that ';
-      $text .= 'make your site look the way you want it to. With automatic theme updates and world-class support included, ';
-      $text .= 'Genesis is the smart choice for your WordPress website or blog.</p>';
+      $text = '<p>' . __('Genesis empowers you to quickly and easily build incredible websites with WordPress.', WPGB_LOCAL);
+      $text .= __('Whether you\'re a novice or advanced developer, Genesis provides the secure and search-engine-optimized foundation that takes WordPress to places you never thought it could go.', WPGB_LOCAL);
+      $text .= __(' It\'s that simple', WPGB_LOCAL) . ' - <a' . ($opennewwindow ? ' target="_blank" ' : ' ') . ($nofollow ? ' rel="nofollow" ' : ' ') . 'href="' . $affiliate_url . '">' . __('start using Genesis now!', WPGB_LOCAL) . '</a></p>';
+      $text .= '<p>' . __('Take advantage of the 6 default layout options, comprehensive SEO settings, rock-solid security, flexible theme options, cool custom widgets, custom design hooks, and a huge selection of child themes ("skins") that make your site look the way you want it to.', WPGB_LOCAL);
+      $text .= __(' With automatic theme updates and world-class support included, Genesis is the smart choice for your WordPress website or blog.', WPGB_LOCAL) . '</p>';
     }
 
     // calculate image url
     $images = explode(",", WPGB_AVAILABLE_IMAGES);
-    if (!in_array($image, $images)) {
-      $image = $images[$options[WPGB_DEFAULT_IMAGE_NAME]];
-      if (!$image) { $image = WPGB_DEFAULT_IMAGE; }
+    if (!in_array($img, $images)) {
+      $img = $images[$options[WPGB_DEFAULT_IMAGE_NAME]];
+      if (!$img) { $img = WPGB_DEFAULT_IMAGE; }
     }
-    $imageurl = plugins_url(plugin_basename(dirname(__FILE__) . '/images/' . $image . '.png'));
+    $imageurl = plugins_url(plugin_basename(dirname(__FILE__) . '/images/' . $img . '.png'));
     $imagedata = getimagesize($imageurl);
     $output = '<div id="genesis-box"' . ($rounded ? ' class="wpgb-rounded-corners"' : '') . '>';
     $output .= '<h3>' . __('This website runs on the Genesis framework', WPGB_LOCAL) . '</h3>';
-    $output .= '<a' . ($opennewwindow ? ' target="_blank" ' : ' ') . ($nofollow ? ' rel="nofollow" ' : ' ') . 'href="' . $affurl . '">';
+    $output .= '<a' . ($opennewwindow ? ' target="_blank" ' : ' ') . ($nofollow ? ' rel="nofollow" ' : ' ') . 'href="' . $affiliate_url . '">';
     $output .= '<img class="alignright" src="' . $imageurl . '" alt="' . __('Genesis Framework', WPGB_LOCAL) . '" title="' . __('Genesis Framework', WPGB_LOCAL) . '" width="' . $imagedata[0] . '" height="' . $imagedata[1] . '" /></a>';
     $output .= do_shortcode($text) . '</div>';
   } else { // plugin disabled
-    $output = '<!-- ' . WPGB_PLUGIN_NAME . ': ' . __('plugin is disabled. Check Settings page.', WPGB_LOCAL) . ' -->';
+    remove_action('wp_head', 'wp_genesis_box_styles');
+    $output = '<!-- ' . WPGB_PLUGIN_NAME . ': plugin is disabled. Either you did not pass a necessary setting to the plugin, or did not configure a default. Check Settings page. -->';
   }
-  if ($show) {
-    echo $output;
-  } else {
-    return $output;
+  if ($enabled) {
+    if ($show) {
+      echo $output;
+    } else {
+      return $output;
+    }
   }
-}
+} // end shortcode function
 // auto insert at end of posts?
 add_action('the_content', 'wpgb_insert_genesis_box');
 function wpgb_insert_genesis_box($content) {
@@ -232,19 +296,31 @@ function wpgb_showAdminMessages() {
   global $pagenow;
   if (current_user_can('manage_options')) { // user has privilege
     if ($pagenow == 'options-general.php') {
-	if ($_GET['page'] == WPGB_SLUG) { // on WP Genesis Box settings page
-        $options = wpgb_getpluginoptions(); // get_option(WPGB_OPTION); // don't use encapsulated function here
-	  if ($options) {
-	    $enabled = $options[WPGB_DEFAULT_ENABLED_NAME];
-	    $affurl = $options[WPGB_DEFAULT_URL_NAME];
-	    if ($enabled === false) {
-		echo '<div class="updated">' . WPGB_PLUGIN_NAME . ' ' . __('is currently disabled.', WPGB_LOCAL) . '</div>';
-	    }
-	    if ($affurl === WPGB_DEFAULT_URL) {
-		echo '<div class="error">' . __('WARNING: Affiliate URL missing. Please enter it below, or pass it to the shortcode or function, otherwise the plugin won\'t do anything.', WPGB_LOCAL) . '</div>';
-	    }
+			if ($_GET['page'] == WPGB_SLUG) { // on WP Genesis Box settings page
+        $options = wpgb_getpluginoptions();
+				if ($options != false) {
+					$enabled = $options[WPGB_DEFAULT_ENABLED_NAME];
+					$affiliate_url = $options[WPGB_DEFAULT_URL_NAME];
+					if (!$enabled) {
+						echo '<div id="message" class="error">' . WPGB_PLUGIN_NAME . ' ' . __('is currently disabled.', WPGB_LOCAL) . '</div>';
+					}
+					if (($affiliate_url === WPGB_DEFAULT_URL) || ($affiliate_url === false)) {
+						echo '<div id="message" class="updated">' . __('WARNING: Affiliate URL missing. Please enter it below, or pass it to the shortcode or function, otherwise the plugin won\'t do anything.', WPGB_LOCAL) . '</div>';
+					}
         }
-	}
+			}
+    } // end page check
+  } // end privilege check
+} // end admin msgs function
+// add admin CSS if we are on the plugin options page
+add_action('admin_head', 'insert_wpgb_admin_css');
+function insert_wpgb_admin_css() {
+  global $pagenow;
+  if (current_user_can('manage_options')) { // user has privilege
+    if ($pagenow == 'options-general.php') {
+      if ($_GET['page'] == WPGB_SLUG) { // we are on settings page
+        wpgb_admin_styles();
+      }
     }
   }
 }
@@ -256,6 +332,18 @@ function wp_genesis_box_plugin_settings_link($links) {
   array_unshift($links, $settings_link); 
   return $links; 
 }
+// enqueue/register the admin CSS file
+function wpgb_admin_styles() {
+  wp_enqueue_style('wpgb_admin_style');
+}
+function register_wpgb_admin_style() {
+  wp_register_style( 'wpgb_admin_style',
+    plugins_url(plugin_basename(dirname(__FILE__)) . '/css/admin.css'),
+    array(),
+    WPGB_VERSION,
+    'all' );
+}
+// enqueue/register the plugin CSS file
 function wp_genesis_box_styles() {
   wp_enqueue_style('wp_genesis_box_style');
 }
@@ -266,7 +354,26 @@ function register_wp_genesis_box_style() {
     WPGB_VERSION, 
     'all' );
 }
+// when plugin is activated, create options array and populate with defaults
+register_activation_hook(__FILE__, 'wpgb_activate');
+function wpgb_activate() {
+  $options = wpgb_getpluginoptions();
+  update_option(WPGB_OPTION, $options);
+}
+// generic function that returns plugin options from DB
+// if option does not exist, returns plugin defaults
 function wpgb_getpluginoptions() {
   return get_option(WPGB_OPTION, array(WPGB_DEFAULT_ENABLED_NAME => WPGB_DEFAULT_ENABLED, WPGB_DEFAULT_URL_NAME => WPGB_DEFAULT_URL, WPGB_DEFAULT_ROUNDED_NAME => WPGB_ROUNDED, WPGB_DEFAULT_NOFOLLOW_NAME => WPGB_NOFOLLOW, WPGB_DEFAULT_IMAGE_NAME => WPGB_DEFAULT_IMAGE, WPGB_DEFAULT_AUTO_INSERT_NAME => WPGB_DEFAULT_AUTO_INSERT, WPGB_DEFAULT_NEWWINDOW_NAME => WPGB_DEFAULT_NEWWINDOW));
+}
+// function to return shortcode defaults
+function wpgb_shortcode_defaults() {
+  return array(
+    WPGB_DEFAULT_URL_NAME => WPGB_DEFAULT_URL, 
+    WPGB_DEFAULT_ROUNDED_NAME => WPGB_ROUNDED, 
+    WPGB_DEFAULT_NOFOLLOW_NAME => WPGB_NOFOLLOW, 
+    WPGB_DEFAULT_IMAGE_NAME => WPGB_DEFAULT_IMAGE, 
+    WPGB_DEFAULT_NEWWINDOW_NAME => WPGB_DEFAULT_NEWWINDOW, 
+    WPGB_DEFAULT_SHOW_NAME => WPGB_DEFAULT_SHOW
+    );
 }
 ?>
