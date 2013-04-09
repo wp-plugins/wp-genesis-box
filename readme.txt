@@ -154,11 +154,14 @@ Add this to your functions.php:
 
 `remove_action('admin_head', 'insert_wpgb_admin_css');`
 
-= I don't want the plugin CSS. How do I remove it? =
+= I don't want to use the plugin CSS. =
 
 Add this to your functions.php:
 
-`remove_action('wp_head', 'wp_genesis_box_styles');`
+`add_action('wp_enqueue_scripts', 'remove_wpgb_style');
+function remove_wpgb_style() {
+  wp_deregister_style('wp_genesis_box_style');
+}`
 
 = I want to use my own text instead of the text output by the plugin. =
 

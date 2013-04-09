@@ -241,7 +241,7 @@ function genesis_aff_box($atts, $content = null) {
   // ******************************
   if ($enabled) {
     // enqueue CSS only on pages with shortcode
-    add_action('wp_head', 'wp_genesis_box_styles'); // or wp_enqueue_styles ?
+    wp_enqueue_style('wp_genesis_box_style');
 
     if ($content) {
       $text = wp_kses_post(force_balance_tags($content));
@@ -267,7 +267,6 @@ function genesis_aff_box($atts, $content = null) {
     $output .= '<img class="alignright" src="' . $imageurl . '" alt="' . __('Genesis Framework', WPGB_LOCAL) . '" title="' . __('Genesis Framework', WPGB_LOCAL) . '" width="' . $imagedata[0] . '" height="' . $imagedata[1] . '" /></a>';
     $output .= do_shortcode($text) . '</div>';
   } else { // plugin disabled
-    remove_action('wp_head', 'wp_genesis_box_styles');
     $output = '<!-- ' . WPGB_PLUGIN_NAME . ': plugin is disabled. Either you did not pass a necessary setting to the plugin, or did not configure a default. Check Settings page. -->';
   }
   if ($enabled) {
