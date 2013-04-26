@@ -41,19 +41,7 @@ To remove this plugin, go to the 'Plugins' menu in WordPress, find the plugin in
 
 = What are the plugin defaults? =
 
-By default, following values are passed to the plugin:
-
-- affurl => ''
-- rounded => false
-- nofollow => true
-- image => 'genesis_framework_logo1'
-- opennewwindow => false
-
-By default, values are returned, not echoed. You need to explicitly request that the plugin output be echoed by passing `'show' => true` in the array when calling the plugin via function.
-
-To change defaults on a site-wide basis, go to the Settings page. To change defaults on a per-shortcode basis, pass new values to each shortcode or function call. Priority is given to parameters passed via shortcode or function.
-
-The plugin arguments and default values may change over time. To get the latest list of arguments and defaults, look at the settings page.
+The plugin arguments and default values may change over time. To get the latest list of arguments and defaults, look at the settings page after installing the plugin.
 
 = How do I use the plugin? =
 
@@ -148,6 +136,10 @@ This means you didn't pass a necessary setting to the plugin, so it disabled its
 
 Are you using a plugin that minifies CSS? If so, try excluding the plugin CSS file from minification.
 
+= I cleared my cache and still don't see what I want. =
+
+The CSS files include a `?ver` query parameter. This parameter is incremented with every upgrade in order to bust caches. Make sure none of your plugins or functions are stripping this query parameter. Also, if you are using a CDN, flush it or send an invalidation request for the plugin CSS files so that the edge servers request a new copy of it.
+
 = I don't want the admin CSS. How do I remove it? =
 
 Add this to your functions.php:
@@ -183,6 +175,12 @@ The second argument of the function is the content you want to use. You can use 
 2. Settings page
 
 == Changelog ==
+
+= 0.0.8 =
+- target="_blank" is deprecated, replaced with javascript fallback
+
+= 0.0.7 =
+- minor code refactoring
 
 = 0.0.6 =
 - added donate link on admin page
@@ -221,6 +219,12 @@ The second argument of the function is the content you want to use. You can use 
 created
 
 == Upgrade Notice ==
+
+= 0.0.8 =
+- target="_blank" is deprecated, replaced with javascript fallback
+
+= 0.0.7 =
+- minor code refactoring
 
 = 0.0.6 =
 - added donate link on admin page
