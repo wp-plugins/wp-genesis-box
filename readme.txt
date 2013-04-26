@@ -171,8 +171,8 @@ The second argument of the function is the content you want to use. You can use 
 
 == Screenshots ==
 
-1. Here's what the output looks like.
-2. Settings page
+1. Settings page
+2. Example output
 
 == Changelog ==
 
