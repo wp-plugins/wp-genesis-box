@@ -176,6 +176,9 @@ The second argument of the function is the content you want to use. You can use 
 
 == Changelog ==
 
+= 0.0.9 =
+minor admin code update
+
 = 0.0.8 =
 - target="_blank" is deprecated, replaced with javascript fallback
 
@@ -219,6 +222,9 @@ The second argument of the function is the content you want to use. You can use 
 created
 
 == Upgrade Notice ==
+
+= 0.0.9 =
+minor admin code update
 
 = 0.0.8 =
 - target="_blank" is deprecated, replaced with javascript fallback

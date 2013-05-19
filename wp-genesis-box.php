@@ -3,13 +3,13 @@
 Plugin Name: WP Genesis Box
 Plugin URI: http://www.jimmyscode.com/wordpress/wp-genesis-box/
 Description: Display the Genesis framework affiliate box on your WordPress website. Make money as a Studiopress affiliate.
-Version: 0.0.8
+Version: 0.0.9
 Author: Jimmy Pe&ntilde;a
 Author URI: http://www.jimmyscode.com/
 License: GPLv2 or later
 */
 // plugin constants
-define('WPGB_VERSION', '0.0.8');
+define('WPGB_VERSION', '0.0.9');
 define('WPGB_PLUGIN_NAME', 'WP Genesis Box');
 define('WPGB_SLUG', 'wp-genesis-box');
 define('WPGB_OPTION', 'wp_genesis_box');
@@ -233,7 +233,7 @@ function genesis_aff_box($atts, $content = null) {
   // ******************************
   if ($enabled) {
     // enqueue CSS only on pages with shortcode
-    wp_enqueue_style('wp_genesis_box_style');
+    wp_genesis_box_styles();
 
     if ($content) {
       $text = wp_kses_post(force_balance_tags($content));
