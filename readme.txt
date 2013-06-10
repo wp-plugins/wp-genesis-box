@@ -26,6 +26,14 @@ Genesis is a framework for WordPress for developing and maintaining modern and b
 - Includes standard marketing language from Studiopress, or use your own
 - Automatically insert the Genesis box after each post
 
+= Shortcode =
+
+To display on any post or page, use this shortcode:
+
+[wp-genesis-box]
+
+Make sure you go to the plugin settings page after installing to set options.
+
 <strong>If you use and enjoy this plugin, please rate it and click the "Works" button below so others know that it works with the latest version of WordPress.</strong>
 
 == Installation ==
@@ -49,7 +57,7 @@ You must have an affiliate account with <a href="http://www.studiopress.com/affi
 
 After going to Settings &raquo; WP Genesis Box and inserting your affiliate link, use a shortcode to call the plugin from any page or post like this:
 
-[wp-genesis-box]
+`[wp-genesis-box]`
 
 You can also use the following function in your PHP code (functions.php, or a plugin):
 
@@ -176,6 +184,9 @@ The second argument of the function is the content you want to use. You can use 
 
 == Changelog ==
 
+= 0.1.0 =
+some security hardening added
+
 = 0.0.9 =
 minor admin code update
 
@@ -222,6 +233,9 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.1.0 =
+some security hardening added
 
 = 0.0.9 =
 minor admin code update
