@@ -177,12 +177,22 @@ If you are using the PHP function, do this:
 
 The second argument of the function is the content you want to use. You can use HTML tags and shortcodes in this string.
 
+= I don't see the plugin toolbar button(s). =
+
+This plugin adds one or more toolbar buttons to the HTML editor. You will not see them on the Visual editor.
+
+The label on the toolbar button is "Genesis Box".
+
 == Screenshots ==
 
 1. Settings page
 2. Example output
 
 == Changelog ==
+
+= 0.1.1 =
+- updated the plugin settings page list of parameters to indicate whether they are required or not
+- updated FAQ section of readme.txt
 
 = 0.1.0 =
 some security hardening added
@@ -233,6 +243,10 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.1.1 =
+- updated the plugin settings page list of parameters to indicate whether they are required or not
+- updated FAQ section of readme.txt
 
 = 0.1.0 =
 some security hardening added

@@ -3,13 +3,13 @@
 Plugin Name: WP Genesis Box
 Plugin URI: http://www.jimmyscode.com/wordpress/wp-genesis-box/
 Description: Display the Genesis framework affiliate box on your WordPress website. Make money as a Studiopress affiliate.
-Version: 0.1.0
+Version: 0.1.1
 Author: Jimmy Pe&ntilde;a
 Author URI: http://www.jimmyscode.com/
 License: GPLv2 or later
 */
 // plugin constants
-define('WPGB_VERSION', '0.1.0');
+define('WPGB_VERSION', '0.1.1');
 define('WPGB_PLUGIN_NAME', 'WP Genesis Box');
 define('WPGB_SLUG', 'wp-genesis-box');
 define('WPGB_OPTION', 'wp_genesis_box');
@@ -128,25 +128,30 @@ function wp_genesis_box_page() {
     <table class="widefat">
       <thead>
         <tr>
-          <th>Argument</th>
-	    <th>Type</th>
-          <th>Default Value</th>
+          <th title="<?php _e('The name of the parameter', WPGB_LOCAL); ?>"><?php _e('Argument', WPGB_LOCAL); ?></th>
+	  <th title="<?php _e('Is this parameter required?', WPGB_LOCAL); ?>"><?php _e('Required?', WPGB_LOCAL); ?></th>
+          <th title="<?php _e('What data type this parameter accepts', WPGB_LOCAL); ?>"><?php _e('Type', WPGB_LOCAL); ?></th>
+          <th title="<?php _e('What, if any, is the default if no value is specified', WPGB_LOCAL); ?>"><?php _e('Default Value', WPGB_LOCAL); ?></th>
         </tr>
       </thead>
       <tbody>
-    <?php $plugin_defaults = wpgb_shortcode_defaults(); foreach($plugin_defaults as $key => $value) { ?>
+    <?php $plugin_defaults_keys = array_keys(wpgb_shortcode_defaults());
+					$plugin_defaults_values = array_values(wpgb_shortcode_defaults());
+					$wpgb_required = wpgb_required_parameters();
+					for($i=0; $i<count($plugin_defaults_keys);$i++) { ?>
         <tr>
-          <td><?php echo $key; ?></td>
-	    <td><?php echo gettype($value); ?></td>
-          <td> <?php 
-						if ($value === true) {
+          <td><?php echo $plugin_defaults_keys[$i]; ?></td>
+					<td><?php echo $wpgb_required[$i]; ?></td>
+          <td><?php echo gettype($plugin_defaults_values[$i]); ?></td>
+          <td><?php 
+						if ($plugin_defaults_values[$i] === true) {
 							echo 'true';
-						} elseif ($value === false) {
+						} elseif ($plugin_defaults_values[$i] === false) {
 							echo 'false';
-						} elseif ($value === '') {
+						} elseif ($plugin_defaults_values[$i] === '') {
 							echo '<em>(this value is blank by default)</em>';
 						} else {
-							echo $value;
+							echo $plugin_defaults_values[$i];
 						} ?></td>
         </tr>
     <?php } ?>
@@ -385,5 +390,16 @@ function wpgb_shortcode_defaults() {
     WPGB_DEFAULT_NEWWINDOW_NAME => WPGB_DEFAULT_NEWWINDOW, 
     WPGB_DEFAULT_SHOW_NAME => WPGB_DEFAULT_SHOW
     );
+}
+// function to return parameter status (required or not)
+function wpgb_required_parameters() {
+  return array(
+    'true',
+    'false',
+    'false',
+    'false',
+    'false',
+    'false',
+  );
 }
 ?>
