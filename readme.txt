@@ -1,7 +1,7 @@
 === WP Genesis Box ===
 Tags: genesis, affiliate, marketing, commission, box, rounded, image
 Requires at least: 3.5
-Tested up to: 3.5.1
+Tested up to: 3.5.2
 Contributors: jp2112
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7EX9NB9TLFHVW
 Stable tag: trunk
@@ -190,6 +190,9 @@ The label on the toolbar button is "Genesis Box".
 
 == Changelog ==
 
+= 0.1.2 =
+fixed uninstall routine, actually deletes options now
+
 = 0.1.1 =
 - updated the plugin settings page list of parameters to indicate whether they are required or not
 - updated FAQ section of readme.txt
@@ -243,6 +246,9 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.1.2 =
+fixed uninstall routine, actually deletes options now
 
 = 0.1.1 =
 - updated the plugin settings page list of parameters to indicate whether they are required or not
