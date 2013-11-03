@@ -3,13 +3,13 @@
 Plugin Name: WP Genesis Box
 Plugin URI: http://www.jimmyscode.com/wordpress/wp-genesis-box/
 Description: Display the Genesis framework affiliate box on your WordPress website. Make money as a Studiopress affiliate.
-Version: 0.1.2
+Version: 0.1.3
 Author: Jimmy Pe&ntilde;a
 Author URI: http://www.jimmyscode.com/
 License: GPLv2 or later
 */
 // plugin constants
-define('WPGB_VERSION', '0.1.2');
+define('WPGB_VERSION', '0.1.3');
 define('WPGB_PLUGIN_NAME', 'WP Genesis Box');
 define('WPGB_SLUG', 'wp-genesis-box');
 define('WPGB_OPTION', 'wp_genesis_box');
@@ -166,6 +166,9 @@ function wp_genesis_box_page() {
     <?php screen_icon('edit-comments'); ?>
     <h3>Support</h3>
 	<div class="support">
+	<?php echo '<a href="http://wordpress.org/extend/plugins/' . WPGB_SLUG . '/">' . __('Documentation', WPGB_LOCAL) . '</a> | ';
+        echo '<a href="http://wordpress.org/plugins/' . WPGB_SLUG . '/faq/">' . __('FAQ', WPGB_LOCAL) . '</a><br />';
+			?>
       If you like this plugin, please <a href="http://wordpress.org/support/view/plugin-reviews/<?php echo WPGB_SLUG; ?>/">rate it on WordPress.org</a> and click the "Works" button so others know it will work for your WordPress version. For support please visit the <a href="http://wordpress.org/support/plugin/<?php echo WPGB_SLUG; ?>">forums</a>. <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7EX9NB9TLFHVW"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate with PayPal" title="Donate with PayPal" width="92" height="26" /></a>
     </div>
   </div>
@@ -338,6 +341,21 @@ function wp_genesis_box_plugin_settings_link($links) {
   $settings_link = '<a href="options-general.php?page=wp-genesis-box">' . __('Settings', WPGB_LOCAL) . '</a>'; 
   array_unshift($links, $settings_link); 
   return $links; 
+}
+// http://wpengineer.com/1295/meta-links-for-wordpress-plugins/
+add_filter('plugin_row_meta', 'wpgb_meta_links', 10, 2);
+function wpgb_meta_links($links, $file) {
+  $plugin = plugin_basename(__FILE__);
+  // create link
+  if ($file == $plugin) {
+    $links = array_merge($links,
+      array(
+        '<a href="http://wordpress.org/support/plugin/' . WPGB_SLUG . '">' . __('Support', WPGB_LOCAL) . '</a>',
+        '<a href="http://wordpress.org/extend/plugins/' . WPGB_SLUG . '/">' . __('Documentation', WPGB_LOCAL) . '</a>',
+        '<a href="http://wordpress.org/plugins/' . WPGB_SLUG . '/faq/">' . __('FAQ', WPGB_LOCAL) . '</a>'
+    ));
+  }
+  return $links;
 }
 // enqueue/register the plugin CSS file
 function wp_genesis_box_styles() {

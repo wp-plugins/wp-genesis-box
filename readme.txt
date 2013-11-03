@@ -190,6 +190,10 @@ The label on the toolbar button is "Genesis Box".
 
 == Changelog ==
 
+= 0.1.3 = 
+- refactored admin CSS
+- added helpful links on plugin settings page and plugins page
+
 = 0.1.2 =
 fixed uninstall routine, actually deletes options now
 
@@ -246,6 +250,10 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.1.3 = 
+- refactored admin CSS
+- added helpful links on plugin settings page and plugins page
 
 = 0.1.2 =
 fixed uninstall routine, actually deletes options now
