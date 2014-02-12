@@ -190,6 +190,11 @@ The label on the toolbar button is "Genesis Box".
 
 == Changelog ==
 
+= 0.1.4 =
+- All CSS and JS automatically busts cache
+- removed screen_icon() (deprecated)
+- updated for WP 3.8.1
+
 = 0.1.3 = 
 - refactored admin CSS
 - added helpful links on plugin settings page and plugins page
@@ -250,6 +255,11 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.1.4 =
+- All CSS and JS automatically busts cache, 
+- removed screen_icon() (deprecated), 
+- updated for WP 3.8.1
 
 = 0.1.3 = 
 - refactored admin CSS
