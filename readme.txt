@@ -190,6 +190,12 @@ The label on the toolbar button is "Genesis Box".
 
 == Changelog ==
 
+= 0.1.5 =
+- put submit button at the top of the plugin settings page
+- spruce up the plugin settings page a bit
+- minor fixes to CSS
+- minor bug with parameter table on plugin settings page
+
 = 0.1.4 =
 - All CSS and JS automatically busts cache
 - removed screen_icon() (deprecated)
@@ -255,6 +261,9 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.1.5 =
+- put submit button at the top of the plugin settings page, spruce up the plugin settings page a bit, minor fixes to CSS, minor bug with parameter table on plugin settings page
 
 = 0.1.4 =
 - All CSS and JS automatically busts cache, 

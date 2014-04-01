@@ -3,13 +3,13 @@
 Plugin Name: WP Genesis Box
 Plugin URI: http://www.jimmyscode.com/wordpress/wp-genesis-box/
 Description: Display the Genesis framework affiliate box on your WordPress website. Make money as a Studiopress affiliate.
-Version: 0.1.4
+Version: 0.1.5
 Author: Jimmy Pe&ntilde;a
 Author URI: http://www.jimmyscode.com/
 License: GPLv2 or later
 */
 // plugin constants
-define('WPGB_VERSION', '0.1.4');
+define('WPGB_VERSION', '0.1.5');
 define('WPGB_PLUGIN_NAME', 'WP Genesis Box');
 define('WPGB_SLUG', 'wp-genesis-box');
 define('WPGB_OPTION', 'wp_genesis_box');
@@ -84,9 +84,10 @@ function wp_genesis_box_page() {
   }
 ?>
   <div class="wrap">
-    <h2><?php echo WPGB_PLUGIN_NAME; ?></h2>
+    <h2><?php echo WPGB_PLUGIN_NAME; ?> by <a href="http://www.jimmyscode.com/">Jimmy Pe&ntilde;a</a></h2>
     <form method="post" action="options.php">
       <div>You are running plugin version <strong><?php echo WPGB_VERSION; ?></strong>.</div>
+      <?php submit_button(); ?>
       <?php settings_fields('wp_genesis_box_options'); ?>
       <?php $options = wpgb_getpluginoptions(); ?>
 	<?php /* update_option(WPGB_OPTION, $options); */ ?>
@@ -129,13 +130,14 @@ function wp_genesis_box_page() {
       </table>
       <?php submit_button(); ?>
     </form>
-    <h3>Plugin Arguments and Defaults</h3>
+    <h3>Plugin Parameters and Default Values</h3>
+	These are the parameters for using the shortcode, or calling the plugin from your PHP code.
     <table class="widefat">
       <thead>
         <tr>
-          <th title="<?php _e('The name of the parameter', WPGB_LOCAL); ?>"><?php _e('Argument', WPGB_LOCAL); ?></th>
-	  <th title="<?php _e('Is this parameter required?', WPGB_LOCAL); ?>"><?php _e('Required?', WPGB_LOCAL); ?></th>
-          <th title="<?php _e('What data type this parameter accepts', WPGB_LOCAL); ?>"><?php _e('Type', WPGB_LOCAL); ?></th>
+          <th title="<?php _e('The name of the parameter', WPGB_LOCAL); ?>"><?php _e('Parmater Name', WPGB_LOCAL); ?></th>
+	  <th title="<?php _e('Is this parameter required?', WPGB_LOCAL); ?>"><?php _e('Is Required?', WPGB_LOCAL); ?></th>
+          <th title="<?php _e('What data type this parameter accepts', WPGB_LOCAL); ?>"><?php _e('Data Type', WPGB_LOCAL); ?></th>
           <th title="<?php _e('What, if any, is the default if no value is specified', WPGB_LOCAL); ?>"><?php _e('Default Value', WPGB_LOCAL); ?></th>
         </tr>
       </thead>
@@ -146,11 +148,17 @@ function wp_genesis_box_page() {
 					for($i=0; $i<count($plugin_defaults_keys);$i++) { ?>
         <tr>
           <td><?php echo $plugin_defaults_keys[$i]; ?></td>
-					<td><?php echo $wpgb_required[$i]; ?></td>
+					<td><?php 
+					  if ($wpgb_required[$i] === true) {
+						  echo '<strong>true</strong>';
+						} else {
+							echo 'false'; 
+						}
+					?></td>
           <td><?php echo gettype($plugin_defaults_values[$i]); ?></td>
           <td><?php 
 						if ($plugin_defaults_values[$i] === true) {
-							echo 'true';
+							echo '<strong>true</strong>';
 						} elseif ($plugin_defaults_values[$i] === false) {
 							echo 'false';
 						} elseif ($plugin_defaults_values[$i] === '') {
@@ -416,12 +424,12 @@ function wpgb_shortcode_defaults() {
 // function to return parameter status (required or not)
 function wpgb_required_parameters() {
   return array(
-    'true',
-    'false',
-    'false',
-    'false',
-    'false',
-    'false',
+    true, 
+    false,
+    false,
+    false,
+    false,
+    false,
   );
 }
 ?>
