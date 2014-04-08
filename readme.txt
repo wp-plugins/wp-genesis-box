@@ -190,6 +190,11 @@ The label on the toolbar button is "Genesis Box".
 
 == Changelog ==
 
+= 0.1.6 =
+- minor plugin settings page update
+- added more images to rotation
+- try to use site name instead of "This Website"
+
 = 0.1.5 =
 - put submit button at the top of the plugin settings page
 - spruce up the plugin settings page a bit
@@ -261,6 +266,9 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.1.6 =
+- minor plugin settings page update, added more images to rotation, try to use site name instead of "This Website"
 
 = 0.1.5 =
 - put submit button at the top of the plugin settings page, spruce up the plugin settings page a bit, minor fixes to CSS, minor bug with parameter table on plugin settings page
