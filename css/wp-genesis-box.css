@@ -29,6 +29,9 @@
   float: right;
   margin: 0 0 25px 15px;
 }
+#genesis-box img {
+  max-width: 100%
+}
 /* css for rounded corners */
 .wpgb-rounded-corners {
   -moz-border-radius: 20px;

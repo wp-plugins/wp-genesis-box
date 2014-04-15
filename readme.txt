@@ -16,6 +16,8 @@ Based on <a href="http://www.briangardner.com/genesis-box/">this blog post from 
 
 Genesis is a framework for WordPress for developing and maintaining modern and beautiful websites. Studiopress (the company that makes Genesis) affiliates can earn commission on every referral. This content box displays marketing text and logo that can help drive referrals through your website.
 
+Requires WP 3.5 and PHP 5.0 and above
+
 = Features =
 
 - Display your affiliate link anywhere
@@ -185,10 +187,15 @@ The label on the toolbar button is "Genesis Box".
 
 == Screenshots ==
 
-1. Settings page
+1. Plugin settings page
 2. Example output
 
 == Changelog ==
+
+= 0.1.7 =
+- prepare strings for internationalization
+- plugin now requires WP 3.5 and PHP 5.0 and above
+- minor code optimization
 
 = 0.1.6 =
 - minor plugin settings page update
@@ -266,6 +273,9 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.1.7 =
+- prepare strings for internationalization, plugin now requires WP 3.5 and PHP 5.0 and above, minor code optimization
 
 = 0.1.6 =
 - minor plugin settings page update, added more images to rotation, try to use site name instead of "This Website"

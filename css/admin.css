@@ -1,4 +1,6 @@
-.widefat {width: 70% !important}
+.widefat {width: auto !important}
+.widefat td {border-bottom: 1px solid lightgray}
+.widefat thead tr {background-color: ivory}
 .icon32 {position: relative}
 .support img {border:0;vertical-align: middle}
 #theme-options-wrap {width: 70%;padding: 3em;border-top: 1px solid white;font-family: sans-serif, Times, 'Times New Roman', serif;font-size: 12pt}
@@ -6,3 +8,8 @@
 #theme-options-wrap select, #theme-options-wrap input[type="text"], #theme-options-wrap input[type="url"] {width: auto}
 #theme-options-wrap th[scope="row"], #theme-options-wrap td {vertical-align: middle;padding:10px}
 #theme-options-wrap td[colspan="2"] {border-bottom: 1px solid #e5e5e5}
+input[type="text"] { width: 300px !important}
+input[type="url"] { width: 300px !important}
+input[type="number"] { width: 300px }
+input[type="range"] { width: 300px }
+select { width: 300px !important }
