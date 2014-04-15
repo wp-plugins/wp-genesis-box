@@ -3,36 +3,15 @@
 Plugin Name: WP Genesis Box
 Plugin URI: http://www.jimmyscode.com/wordpress/wp-genesis-box/
 Description: Display the Genesis framework affiliate box on your WordPress website. Make money as a Studiopress affiliate.
-Version: 0.1.7
+Version: 0.1.8
 Author: Jimmy Pe&ntilde;a
 Author URI: http://www.jimmyscode.com/
 License: GPLv2 or later
 */
 
 define('WPGB_PLUGIN_NAME', 'WP Genesis Box');
-
-// requirements: PHP 5.0 and above, WordPress 3.5 and above
-// http://10up.com/blog/wordpress-plug-in-self-deactivation/
-if ((version_compare(phpversion(), '5.0', '<')) || (version_compare(get_bloginfo('version'), '3.5', '<'))) {
-	global $pagenow;
-	if (is_admin() && ($pagenow == 'plugins.php')) { // we are on plugins page
-		add_action('admin_init', 'wpgb_plugin_deactivate');
-		add_action('admin_notices', 'wpgb_plugin_deactivation_notice');
-		
-		function wpgb_plugin_deactivate() {
-			deactivate_plugins(plugin_basename(__FILE__));
-		}
-		
-		function wpgb_plugin_deactivation_notice() {
-			echo '<div class="error"><p><strong>' . WPGB_PLUGIN_NAME . '</strong> requires PHP 5.0 and WordPress 3.5 at minimum; the plugin has been <strong>deactivated</strong>.</p></div>';
-			if (isset($_GET['activate'])) {
-				unset( $_GET['activate'] );
-			}
-		}
-	}
-} else {
 	// plugin constants
-	define('WPGB_VERSION', '0.1.7');
+	define('WPGB_VERSION', '0.1.8');
 	define('WPGB_SLUG', 'wp-genesis-box');
 	define('WPGB_OPTION', 'wp_genesis_box');
 	define('WPGB_LOCAL', 'wp_genesis_box');
@@ -486,5 +465,4 @@ if ((version_compare(phpversion(), '5.0', '<')) || (version_compare(get_bloginfo
 			false,
 		);
 	}
-}
 ?>

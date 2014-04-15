@@ -192,6 +192,9 @@ The label on the toolbar button is "Genesis Box".
 
 == Changelog ==
 
+= 0.1.8 =
+- OK, I am going to stop playing with the plugin now. Version check rolled back (again)
+
 = 0.1.7 =
 - prepare strings for internationalization
 - plugin now requires WP 3.5 and PHP 5.0 and above
@@ -273,6 +276,9 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.1.8 =
+- OK, I am going to stop playing with the plugin now. Version check rolled back (again)
 
 = 0.1.7 =
 - prepare strings for internationalization, plugin now requires WP 3.5 and PHP 5.0 and above, minor code optimization
