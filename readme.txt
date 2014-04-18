@@ -1,7 +1,7 @@
 === WP Genesis Box ===
 Tags: genesis, affiliate, marketing, commission, box, rounded, image
 Requires at least: 3.5
-Tested up to: 3.7.1
+Tested up to: 3.9
 Contributors: jp2112
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7EX9NB9TLFHVW
 Stable tag: trunk
@@ -16,7 +16,7 @@ Based on <a href="http://www.briangardner.com/genesis-box/">this blog post from 
 
 Genesis is a framework for WordPress for developing and maintaining modern and beautiful websites. Studiopress (the company that makes Genesis) affiliates can earn commission on every referral. This content box displays marketing text and logo that can help drive referrals through your website.
 
-Requires WP 3.5 and PHP 5.0 and above
+Disclaimer: This plugin is not affiliated with or endorsed by ShareASale, StudioPress or Copyblogger Media.
 
 = Features =
 
@@ -192,6 +192,10 @@ The label on the toolbar button is "Genesis Box".
 
 == Changelog ==
 
+= 0.1.9 =
+- some minor code optimizations
+- verified compatibility with 3.9
+
 = 0.1.8 =
 - OK, I am going to stop playing with the plugin now. Version check rolled back (again)
 
@@ -276,6 +280,9 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.1.9 =
+- some minor code optimizations, verified compatibility with 3.9
 
 = 0.1.8 =
 - OK, I am going to stop playing with the plugin now. Version check rolled back (again)

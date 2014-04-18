@@ -3,7 +3,7 @@
 .widefat thead tr {background-color: ivory}
 .icon32 {position: relative}
 .support img {border:0;vertical-align: middle}
-#theme-options-wrap {width: 70%;padding: 3em;border-top: 1px solid white;font-family: sans-serif, Times, 'Times New Roman', serif;font-size: 12pt}
+#theme-options-wrap {width: auto;padding: 3em;border-top: 1px solid white;font-family: sans-serif, Times, 'Times New Roman', serif;font-size: 12pt}
 #theme-options-wrap input, #theme-options-wrap textarea {padding: .7em}
 #theme-options-wrap select, #theme-options-wrap input[type="text"], #theme-options-wrap input[type="url"] {width: auto}
 #theme-options-wrap th[scope="row"], #theme-options-wrap td {vertical-align: middle;padding:10px}
