@@ -192,6 +192,9 @@ The label on the toolbar button is "Genesis Box".
 
 == Changelog ==
 
+= 0.2.1 =
+- fix 2 for wp_kses
+
 = 0.2.0 =
 - fix for wp_kses
 
@@ -283,6 +286,9 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.2.1 =
+- fix 2 for wp_kses
 
 = 0.2.0 =
 - fix for wp_kses
