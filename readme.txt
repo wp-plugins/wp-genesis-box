@@ -199,6 +199,10 @@ The Parameters tab also contains sample shortcode and PHP code.
 
 == Changelog ==
 
+= 0.2.3 =
+- minor code fix
+- updated support tab
+
 = 0.2.2 =
 - option to show the output only to users who are not logged in
 - option to use short or extended text in the output
@@ -299,6 +303,9 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.2.3 =
+- minor code fix; updated support tab
 
 = 0.2.2 =
 - option to show the output only to users who are not logged in; option to use short or extended text in the output; code optimizations; use 'affurl', 'url', 'link' or 'href' as the URL parameter name
