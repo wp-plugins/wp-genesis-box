@@ -199,6 +199,10 @@ The Parameters tab also contains sample shortcode and PHP code.
 
 == Changelog ==
 
+= 0.2.4 =
+- code fix
+- admin CSS and page updates
+
 = 0.2.3 =
 - minor code fix
 - updated support tab
@@ -303,6 +307,9 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.2.4 =
+- code fix; admin CSS and page updates
 
 = 0.2.3 =
 - minor code fix; updated support tab
