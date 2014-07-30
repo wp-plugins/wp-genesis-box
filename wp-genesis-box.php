@@ -3,7 +3,7 @@
 Plugin Name: WP Genesis Box
 Plugin URI: http://www.jimmyscode.com/wordpress/wp-genesis-box/
 Description: Display the Genesis framework affiliate box on your WordPress website. Make money as a Studiopress affiliate.
-Version: 0.2.5
+Version: 0.2.6
 Author: Jimmy Pe&ntilde;a
 Author URI: http://www.jimmyscode.com/
 License: GPLv2 or later
@@ -12,7 +12,7 @@ License: GPLv2 or later
 if (!defined('WPGB_PLUGIN_NAME')) {
 	// plugin constants
 	define('WPGB_PLUGIN_NAME', 'WP Genesis Box');
-	define('WPGB_VERSION', '0.2.5');
+	define('WPGB_VERSION', '0.2.6');
 	define('WPGB_SLUG', 'wp-genesis-box');
 	define('WPGB_LOCAL', 'wp_genesis_box');
 	define('WPGB_OPTION', 'wp_genesis_box');
@@ -96,7 +96,7 @@ if (!defined('WPGB_PLUGIN_NAME')) {
 			<div><?php _e('You are running plugin version', wpgb_get_local()); ?> <strong><?php echo WPGB_VERSION; ?></strong>.</div>
 
 			<?php /* http://code.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-5-tabbed-navigation-for-your-settings-page--wp-24971 */ ?>
-			<?php $active_tab = (!empty($_GET['tab']) ? $_GET['tab'] : 'settings'); ?>
+			<?php $active_tab = (isset($_GET['tab']) ? $_GET['tab'] : 'settings'); ?>
 			<h2 class="nav-tab-wrapper">
 			  <a href="?page=<?php echo wpgb_get_slug(); ?>&tab=settings" class="nav-tab <?php echo $active_tab == 'settings' ? 'nav-tab-active' : ''; ?>"><?php _e('Settings', wpgb_get_local()); ?></a>
 				<a href="?page=<?php echo wpgb_get_slug(); ?>&tab=parameters" class="nav-tab <?php echo $active_tab == 'parameters' ? 'nav-tab-active' : ''; ?>"><?php _e('Parameters', wpgb_get_local()); ?></a>
@@ -339,7 +339,7 @@ if (!defined('WPGB_PLUGIN_NAME')) {
 		global $pagenow;
 		if (current_user_can(WPGB_PERMISSIONS_LEVEL)) { // user has privilege
 			if ($pagenow == 'options-general.php') {
-				if (!empty($_GET['page'])) {
+				if (isset($_GET['page'])) {
 					if ($_GET['page'] == wpgb_get_slug()) { // we are on this plugin's settings page
 						$options = wpgb_getpluginoptions();
 						if (!empty($options)) {
@@ -363,7 +363,7 @@ if (!defined('WPGB_PLUGIN_NAME')) {
 		global $pagenow;
 		if (current_user_can(WPGB_PERMISSIONS_LEVEL)) { // user has privilege
 			if ($pagenow == 'options-general.php') {
-				if (!empty($_GET['page'])) {
+				if (isset($_GET['page'])) {
 					if ($_GET['page'] == wpgb_get_slug()) { // we are on this plugin's settings page
 						wpgb_admin_styles();
 					}
