@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the WP Genesis Box package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Genesis Box 0.1.8\n"
+"Project-Id-Version: WP Genesis Box 0.2.6\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-genesis-box\n"
-"POT-Creation-Date: 2014-04-16 00:08:29+00:00\n"
+"POT-Creation-Date: 2014-08-14 16:43:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,204 +12,181 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: wp-genesis-box.php:40
+#: wp-genesis-box.php:48
 msgid "Do not access this file directly."
 msgstr ""
 
-#: wp-genesis-box.php:84
+#: wp-genesis-box.php:91
 msgid "You do not have sufficient permission to access this page"
 msgstr ""
 
-#: wp-genesis-box.php:96 wp-genesis-box.php:99
+#: wp-genesis-box.php:96
+msgid "You are running plugin version"
+msgstr ""
+
+#: wp-genesis-box.php:101
+msgid "Settings"
+msgstr ""
+
+#: wp-genesis-box.php:102
+msgid "Parameters"
+msgstr ""
+
+#: wp-genesis-box.php:103 wp-genesis-box.php:183
+msgid "Support"
+msgstr ""
+
+#: wp-genesis-box.php:111
+msgid "Plugin Settings"
+msgstr ""
+
+#: wp-genesis-box.php:113 wp-genesis-box.php:116
 msgid "Is plugin enabled? Uncheck this to turn it off temporarily."
 msgstr ""
 
-#: wp-genesis-box.php:96
+#: wp-genesis-box.php:113
 msgid "Plugin enabled?"
 msgstr ""
 
-#: wp-genesis-box.php:100 wp-genesis-box.php:103
+#: wp-genesis-box.php:118 wp-genesis-box.php:121
 msgid ""
 "Enter your affiliate URL here. This will be inserted wherever you use the "
 "shortcode."
 msgstr ""
 
-#: wp-genesis-box.php:100
+#: wp-genesis-box.php:118
 msgid "Your Affiliate URL"
 msgstr ""
 
-#: wp-genesis-box.php:104 wp-genesis-box.php:107
+#: wp-genesis-box.php:123 wp-genesis-box.php:126
 msgid "Do you want to apply rounded corners CSS to the output?"
 msgstr ""
 
-#: wp-genesis-box.php:104
+#: wp-genesis-box.php:123
 msgid "Rounded corners CSS?"
 msgstr ""
 
-#: wp-genesis-box.php:108
+#: wp-genesis-box.php:128
 msgid ""
 "Check this box to automatically insert the output at the end of blog posts. "
 "If you do not do this then you will need to manually insert shortcode or "
 "call the function in PHP."
 msgstr ""
 
-#: wp-genesis-box.php:108
+#: wp-genesis-box.php:128
 msgid "Auto insert Genesis box at the end of posts?"
 msgstr ""
 
-#: wp-genesis-box.php:111
+#: wp-genesis-box.php:131
 msgid ""
 "Check this box to automatically insert the output at the end of blog posts. "
 "If you don't do this then you will need to manually insert shortcode or call "
 "the function in PHP."
 msgstr ""
 
-#: wp-genesis-box.php:112
+#: wp-genesis-box.php:133
 msgid "Do you want to add rel=nofollow to all links?"
 msgstr ""
 
-#: wp-genesis-box.php:112
+#: wp-genesis-box.php:133
 msgid "Nofollow links?"
 msgstr ""
 
-#: wp-genesis-box.php:115
-msgid "Do you want to add rel=\"nofollow\" to all links?"
-msgstr ""
-
-#: wp-genesis-box.php:116 wp-genesis-box.php:119
+#: wp-genesis-box.php:138 wp-genesis-box.php:141
 msgid "Check this box to open links in a new window."
 msgstr ""
 
-#: wp-genesis-box.php:116
+#: wp-genesis-box.php:138
 msgid "Open links in new window?"
 msgstr ""
 
-#: wp-genesis-box.php:120 wp-genesis-box.php:130
+#: wp-genesis-box.php:143
+msgid "Show output to non-logged in users only?"
+msgstr ""
+
+#: wp-genesis-box.php:146
+msgid "Check this box to display Genesis box to non-logged-in users only."
+msgstr ""
+
+#: wp-genesis-box.php:148
+msgid "Show full marketing text"
+msgstr ""
+
+#: wp-genesis-box.php:151
+msgid ""
+"Check this box if you want to show the full marketing text. If unchecked, "
+"only the first paragraph will be shown."
+msgstr ""
+
+#: wp-genesis-box.php:153 wp-genesis-box.php:166
 msgid "Select the default image."
 msgstr ""
 
-#: wp-genesis-box.php:120
+#: wp-genesis-box.php:153
 msgid "Default image"
 msgstr ""
 
-#: wp-genesis-box.php:140
-msgid "The name of the parameter"
+#: wp-genesis-box.php:170
+msgid "Plugin Parameters and Default Values"
 msgstr ""
 
-#: wp-genesis-box.php:140
-msgid "Parameter Name"
+#: wp-genesis-box.php:175
+msgid "Shortcode and PHP Examples"
 msgstr ""
 
-#: wp-genesis-box.php:141
-msgid "Is this parameter required?"
+#: wp-genesis-box.php:176
+msgid "Shortcode Format:"
 msgstr ""
 
-#: wp-genesis-box.php:141
-msgid "Is Required?"
+#: wp-genesis-box.php:179
+msgid "PHP Format:"
 msgstr ""
 
-#: wp-genesis-box.php:142
-msgid "What data type this parameter accepts"
+#: wp-genesis-box.php:181
+msgid ""
+"<small>Note: 'show' is false by default; set it to <strong>true</strong> "
+"echo the output, or <strong>false</strong> to return the output to your PHP "
+"code.</small>"
 msgstr ""
 
-#: wp-genesis-box.php:142
-msgid "Data Type"
-msgstr ""
-
-#: wp-genesis-box.php:143
-msgid "What, if any, is the default if no value is specified"
-msgstr ""
-
-#: wp-genesis-box.php:143
-msgid "Default Value"
-msgstr ""
-
-#: wp-genesis-box.php:156
-msgid "Yes"
-msgstr ""
-
-#: wp-genesis-box.php:159
-msgid "No"
-msgstr ""
-
-#: wp-genesis-box.php:166
-msgid "true"
-msgstr ""
-
-#: wp-genesis-box.php:169
-msgid "false"
-msgstr ""
-
-#: wp-genesis-box.php:172
-msgid "this value is blank by default"
-msgstr ""
-
-#: wp-genesis-box.php:185 wp-genesis-box.php:393
-msgid "Documentation"
-msgstr ""
-
-#: wp-genesis-box.php:186 wp-genesis-box.php:394
-msgid "FAQ"
-msgstr ""
-
-#: wp-genesis-box.php:187
-msgid "If you like this plugin, please "
-msgstr ""
-
-#: wp-genesis-box.php:189
-msgid "rate it on WordPress.org"
-msgstr ""
-
-#: wp-genesis-box.php:191
-msgid "and click the "
-msgstr ""
-
-#: wp-genesis-box.php:193
-msgid "Works"
-msgstr ""
-
-#: wp-genesis-box.php:195
-msgid "button. For support please visit the "
-msgstr ""
-
-#: wp-genesis-box.php:197
-msgid "forums"
-msgstr ""
-
-#: wp-genesis-box.php:203
+#: wp-genesis-box.php:186
 msgid ""
 "Disclaimer: This plugin is not affiliated with or endorsed by ShareASale, "
 "StudioPress or Copyblogger Media."
 msgstr ""
 
-#: wp-genesis-box.php:253 wp-genesis-box.php:319
+#: wp-genesis-box.php:261 wp-genesis-box.php:316
 msgid ""
 "plugin is disabled. Either you did not pass a necessary setting to the "
 "plugin, or did not configure a default. Check Settings page."
 msgstr ""
 
-#: wp-genesis-box.php:295
+#: wp-genesis-box.php:281
+msgid "Set to show to non-logged-in users only, and current user is logged in."
+msgstr ""
+
+#: wp-genesis-box.php:289
 msgid ""
 "Genesis empowers you to quickly and easily build incredible websites with "
 "WordPress."
 msgstr ""
 
-#: wp-genesis-box.php:296
+#: wp-genesis-box.php:290
 msgid ""
 "Whether you're a novice or advanced developer, Genesis provides the secure "
 "and search-engine-optimized foundation that takes WordPress to places you "
 "never thought it could go."
 msgstr ""
 
-#: wp-genesis-box.php:297
+#: wp-genesis-box.php:291
 msgid " It's that simple"
 msgstr ""
 
-#: wp-genesis-box.php:297
+#: wp-genesis-box.php:291
 msgid "start using Genesis now!"
 msgstr ""
 
-#: wp-genesis-box.php:298
+#: wp-genesis-box.php:293
 msgid ""
 "Take advantage of the 6 default layout options, comprehensive SEO settings, "
 "rock-solid security, flexible theme options, cool custom widgets, custom "
@@ -217,50 +194,156 @@ msgid ""
 "your site look the way you want it to."
 msgstr ""
 
-#: wp-genesis-box.php:299
+#: wp-genesis-box.php:294
 msgid " With automatic theme updates and world-class support included,"
 msgstr ""
 
-#: wp-genesis-box.php:299
+#: wp-genesis-box.php:294
 msgid "Genesis"
 msgstr ""
 
-#: wp-genesis-box.php:299
+#: wp-genesis-box.php:294
 msgid " is the smart choice for your WordPress website or blog."
 msgstr ""
 
-#: wp-genesis-box.php:311
+#: wp-genesis-box.php:307
 msgid "This website"
 msgstr ""
 
-#: wp-genesis-box.php:314
+#: wp-genesis-box.php:310
 msgid " runs on the Genesis framework"
 msgstr ""
 
-#: wp-genesis-box.php:316
+#: wp-genesis-box.php:312
 msgid "Genesis Framework"
 msgstr ""
 
-#: wp-genesis-box.php:316
+#: wp-genesis-box.php:312
 msgid "Get the Genesis Theme Framework for WordPress"
 msgstr ""
 
-#: wp-genesis-box.php:354
+#: wp-genesis-box.php:349
 msgid "is currently disabled."
 msgstr ""
 
-#: wp-genesis-box.php:357
+#: wp-genesis-box.php:352
 msgid ""
 "WARNING: Affiliate URL missing. Please enter it below, or pass it to the "
 "shortcode or function, otherwise the plugin won't do anything."
 msgstr ""
 
-#: wp-genesis-box.php:380
-msgid "Settings"
+#: wp-genesis-box.php:387
+msgid "<a href=\"http://wordpress.org/support/plugin/%s\">Support</a>"
 msgstr ""
 
-#: wp-genesis-box.php:392
-msgid "Support"
+#: wp-genesis-box.php:388 wp-genesis-box.php:508
+msgid "<a href=\"http://wordpress.org/extend/plugins/%s/\">Documentation</a>"
+msgstr ""
+
+#: wp-genesis-box.php:389
+msgid "<a href=\"http://wordpress.org/plugins/%s/faq/\">FAQ</a>"
+msgstr ""
+
+#: wp-genesis-box.php:492
+msgid "<a href=\"options-general.php?page=%s\">Settings</a>"
+msgstr ""
+
+#: wp-genesis-box.php:506
+msgid "Do you need help with this plugin? Check out the following resources:"
+msgstr ""
+
+#: wp-genesis-box.php:509
+msgid "<a href=\"http://wordpress.org/plugins/%s/faq/\">FAQ</a><br />"
+msgstr ""
+
+#: wp-genesis-box.php:510
+msgid ""
+"<a href=\"http://wordpress.org/support/plugin/%s\">Support Forum</a><br />"
+msgstr ""
+
+#: wp-genesis-box.php:511
+msgid ""
+"<a href=\"http://www.jimmyscode.com/wordpress/%s\">Plugin Homepage / Demo</"
+"a><br />"
+msgstr ""
+
+#: wp-genesis-box.php:512
+msgid ""
+"<a href=\"http://wordpress.org/extend/plugins/%s/developers/\">Development</"
+"a><br />"
+msgstr ""
+
+#: wp-genesis-box.php:513
+msgid ""
+"<a href=\"http://wordpress.org/plugins/%s/changelog/\">Changelog</a><br />"
+msgstr ""
+
+#: wp-genesis-box.php:516
+msgid ""
+"If you like this plugin, please <a href=\"http://wordpress.org/support/view/"
+"plugin-reviews/%s/\">rate it on WordPress.org</a>"
+msgstr ""
+
+#: wp-genesis-box.php:517
+msgid ""
+" and click the <a href=\"http://wordpress.org/plugins/%s/#compatibility"
+"\">Works</a> button. "
+msgstr ""
+
+#: wp-genesis-box.php:519
+msgid "Your donations encourage further development and support. "
+msgstr ""
+
+#: wp-genesis-box.php:528
+msgid "The name of the parameter"
+msgstr ""
+
+#: wp-genesis-box.php:528
+msgid "Parameter Name"
+msgstr ""
+
+#: wp-genesis-box.php:529
+msgid "Is this parameter required?"
+msgstr ""
+
+#: wp-genesis-box.php:529
+msgid "Is Required?"
+msgstr ""
+
+#: wp-genesis-box.php:530
+msgid "What data type this parameter accepts"
+msgstr ""
+
+#: wp-genesis-box.php:530
+msgid "Data Type"
+msgstr ""
+
+#: wp-genesis-box.php:531
+msgid "What, if any, is the default if no value is specified"
+msgstr ""
+
+#: wp-genesis-box.php:531
+msgid "Default Value"
+msgstr ""
+
+#: wp-genesis-box.php:545
+msgid "Yes"
+msgstr ""
+
+#: wp-genesis-box.php:548
+msgid "No"
+msgstr ""
+
+#: wp-genesis-box.php:557
+msgid "true"
+msgstr ""
+
+#: wp-genesis-box.php:560
+msgid "false"
+msgstr ""
+
+#: wp-genesis-box.php:563
+msgid "this value is blank by default"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
