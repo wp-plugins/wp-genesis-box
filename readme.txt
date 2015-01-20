@@ -1,7 +1,7 @@
 === WP Genesis Box ===
 Tags: genesis, affiliate, marketing, commission, box, rounded, image
-Requires at least: 3.5
-Tested up to: 3.9
+Requires at least: 4.0
+Tested up to: 4.1
 Contributors: jp2112
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7EX9NB9TLFHVW
 Stable tag: trunk
@@ -207,6 +207,11 @@ The Parameters tab also contains sample shortcode and PHP code.
 
 == Changelog ==
 
+= 0.2.8 =
+- fixed PHP notices
+- confirmed compatibility with WordPress 4.1
+- fixed minor typo
+
 = 0.2.7 =
 - updated .pot file and readme
 
@@ -324,6 +329,9 @@ minor admin code update
 created
 
 == Upgrade Notice ==
+
+= 0.2.8 =
+- fixed PHP notices, confirmed compatibility with WordPress 4.1, fixed minor typo
 
 = 0.2.7 =
 - updated .pot file and readme

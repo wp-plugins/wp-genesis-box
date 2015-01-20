@@ -3,7 +3,7 @@
 Plugin Name: WP Genesis Box
 Plugin URI: http://www.jimmyscode.com/wordpress/wp-genesis-box/
 Description: Display the Genesis framework affiliate box on your WordPress website. Make money as a Studiopress affiliate.
-Version: 0.2.7
+Version: 0.2.8
 Author: Jimmy Pe&ntilde;a
 Author URI: http://www.jimmyscode.com/
 License: GPLv2 or later
@@ -12,7 +12,7 @@ License: GPLv2 or later
 if (!defined('WPGB_PLUGIN_NAME')) {
 	// plugin constants
 	define('WPGB_PLUGIN_NAME', 'WP Genesis Box');
-	define('WPGB_VERSION', '0.2.7');
+	define('WPGB_VERSION', '0.2.8');
 	define('WPGB_SLUG', 'wp-genesis-box');
 	define('WPGB_LOCAL', 'wp_genesis_box');
 	define('WPGB_OPTION', 'wp_genesis_box');
@@ -121,7 +121,7 @@ if (!defined('WPGB_PLUGIN_NAME')) {
 					<?php wpgb_explanationrow(__('Enter your affiliate URL here. This will be inserted wherever you use the shortcode.', wpgb_get_local())); ?>
 					<?php wpgb_getlinebreak(); ?>
 					<tr valign="top"><th scope="row"><strong><label title="<?php _e('Do you want to apply rounded corners CSS to the output?', wpgb_get_local()); ?>" for="<?php echo wpgb_get_option(); ?>[<?php echo WPGB_DEFAULT_ROUNDED_NAME; ?>]"><?php _e('Rounded corners CSS?', wpgb_get_local()); ?></label></strong></th>
-						<td><input type="checkbox" id="<?php echo wpgb_get_option(); ?>[<?php echo WPGB_DEFAULT_ROUNDED_NAME; ?>]" name="<?php echo wpgb_get_option(); ?>[<?php echo WPGB_DEFAULT_ROUNDED_NAME; ?>]" value="1" <?php checked('1', wpgb_checkifset(WPGB_DEFAULT_ROUNDED_NAME, WPGB_DEFAULT_ROUNDED, $options)); ?> /></td>
+						<td><input type="checkbox" id="<?php echo wpgb_get_option(); ?>[<?php echo WPGB_DEFAULT_ROUNDED_NAME; ?>]" name="<?php echo wpgb_get_option(); ?>[<?php echo WPGB_DEFAULT_ROUNDED_NAME; ?>]" value="1" <?php checked('1', wpgb_checkifset(WPGB_DEFAULT_ROUNDED_NAME, WPGB_ROUNDED, $options)); ?> /></td>
 					</tr>
 					<?php wpgb_explanationrow(__('Do you want to apply rounded corners CSS to the output?', wpgb_get_local())); ?>
 					<?php wpgb_getlinebreak(); ?>
@@ -131,7 +131,7 @@ if (!defined('WPGB_PLUGIN_NAME')) {
 					<?php wpgb_explanationrow(__('Check this box to automatically insert the output at the end of blog posts. If you don\'t do this then you will need to manually insert shortcode or call the function in PHP.', wpgb_get_local())); ?>
 					<?php wpgb_getlinebreak(); ?>
 					<tr valign="top"><th scope="row"><strong><label title="<?php _e('Do you want to add rel=nofollow to all links?', wpgb_get_local()); ?>" for="<?php echo wpgb_get_option(); ?>[<?php echo WPGB_DEFAULT_NOFOLLOW_NAME; ?>]"><?php _e('Nofollow links?', wpgb_get_local()); ?></label></strong></th>
-						<td><input type="checkbox" id="<?php echo wpgb_get_option(); ?>[<?php echo WPGB_DEFAULT_NOFOLLOW_NAME; ?>]" name="<?php echo wpgb_get_option(); ?>[<?php echo WPGB_DEFAULT_NOFOLLOW_NAME; ?>]" value="1" <?php checked('1', wpgb_checkifset(WPGB_DEFAULT_NOFOLLOW_NAME, WPGB_DEFAULT_NOFOLLOW, $options)); ?> /></td>
+						<td><input type="checkbox" id="<?php echo wpgb_get_option(); ?>[<?php echo WPGB_DEFAULT_NOFOLLOW_NAME; ?>]" name="<?php echo wpgb_get_option(); ?>[<?php echo WPGB_DEFAULT_NOFOLLOW_NAME; ?>]" value="1" <?php checked('1', wpgb_checkifset(WPGB_DEFAULT_NOFOLLOW_NAME, WPGB_NOFOLLOW, $options)); ?> /></td>
 					</tr>
 					<?php wpgb_explanationrow('Do you want to add rel="nofollow" to all links?', wpgb_get_local()); ?>
 					<?php wpgb_getlinebreak(); ?>
@@ -287,7 +287,7 @@ if (!defined('WPGB_PLUGIN_NAME')) {
 					$text = wp_kses_post(force_balance_tags($content));
 				} else {
 					$text = '<p>' . __('Genesis empowers you to quickly and easily build incredible websites with WordPress.', wpgb_get_local());
-					$text .= __('Whether you\'re a novice or advanced developer, Genesis provides the secure and search-engine-optimized foundation that takes WordPress to places you never thought it could go.', wpgb_get_local());
+					$text .= __(' Whether you\'re a novice or advanced developer, Genesis provides the secure and search-engine-optimized foundation that takes WordPress to places you never thought it could go.', wpgb_get_local());
 					$text .= __(' It\'s that simple', wpgb_get_local()) . ' - <a' . ($opennewwindow ? ' onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;" ' : ' ') . ($nofollow ? 'rel="nofollow" ' : ' ') . 'href="' . $affiliate_url . '">' . __('start using Genesis now!', wpgb_get_local()) . '</a></p>';
 					if ($showfulltext) {
 						$text .= '<p>' . __('Take advantage of the 6 default layout options, comprehensive SEO settings, rock-solid security, flexible theme options, cool custom widgets, custom design hooks, and a huge selection of child themes ("skins") that make your site look the way you want it to.', wpgb_get_local());
